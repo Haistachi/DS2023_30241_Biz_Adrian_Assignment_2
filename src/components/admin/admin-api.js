@@ -8,68 +8,64 @@ function getPersons(callback)
     }).then((response) => {
         if (response.status === 200) return response.json();
     }).then((response) => {
-        if (!response){
-            showError("Admin get persons fail");
-            response.json().then(err => callback(null, response.status,  err));}
-        else {response.json().then(json => callback(json, response.status,null));}
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin get persons fail");
+        callback(null, response.status, response);
     });
 }
 
-function insertPersons(user, callback)
+function insertPerson(user, callback)
 {
     fetch("http://localhost:8080/person", {
         headers: {
             "Content-Type": "application/json"},
         method: "post",
-        body: JSON.stringify({"username" : user.name, "userPassword": user.pass, "rol": user.user})
+        body: JSON.stringify({"username" : user.name, "userPassword": user.pass, "rol": user.rol})
     })
         .then((response) => {
             if (response.status === 201) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Admin fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {
-                response.json().then(json => callback(json, response.status,null));
-            }
+        }).then((response) => {
+        callback(response, response.status, null);
+        }).catch((response)=>{
+        showError("Admin insert persons fail");
+        callback(null, response.status, response);
         });
 }
 
-function findPersons(user, callback)
+function deletePerson(userId, callback)
 {
-    fetch("http://localhost:8080/person", {
+    fetch("http://localhost:8080/person/" + userId, {
         headers: {
             "Content-Type": "application/json"},
-        method: "get",
+        method: "delete",
     })
         .then((response) => {
             if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+        }).then((response) => {
+        callback(response, response.status, null);
+        }).catch((response)=>{
+        showError("Admin delete persons fail");
+        callback(null, response.status, response);
+    });
 }
 
-function getPersonById(user, callback)
+function updatePerson(user, callback)
 {
-    fetch("http://localhost:8080/person", {
+    fetch("http://localhost:8080/person/" + user.id, {
         headers: {
             "Content-Type": "application/json"},
-        method: "get",
+        method: "put",
+        body: JSON.stringify(user)
     })
         .then((response) => {
             if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin update persons fail");
+        callback(null, response.status, response);
+    });
 }
 
 function getDevices(callback)
@@ -81,10 +77,10 @@ function getDevices(callback)
     }).then((response) => {
         if (response.status === 200) return response.json();
     }).then((response) => {
-        if (!response){
-            showError("Admin get devices fail");
-            response.json().then(err => callback(null, response.status,  err));}
-        else {response.json().then(json => callback(json, response.status,null));}
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin get devices fail");
+        callback(null, response.status, response);
     });
 }
 
@@ -94,82 +90,61 @@ function insertDevice(device, callback)
         headers: {
             "Content-Type": "application/json"},
         method: "post",
-        body: JSON.stringify({"person" : device.person,
-            "description": device.description, "address": device.address, "consumption": device.consumption})})
+        body: JSON.stringify({"person" : device.owner,
+            "description": device.desc, "address": device.addr, "consumption": device.consume})
+    })
         .then((response) => {
             if (response.status === 201) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Add device fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {
-                response.json().then(json => callback(json, response.status,null));
-            }
-        });
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Add device fail");
+        callback(null, response.status, response);
+    });
 }
 
-function findDevices(device, callback)
+function deleteDevice(deviceId, callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8080/device/" + deviceId, {
         headers: {
             "Content-Type": "application/json"},
-        method: "get",
+        method: "delete",
     })
         .then((response) => {
             if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find devices fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin delete device fail");
+        callback(null, response.status, response);
+    });
 }
 
-function findOwnerDevices(owner, callback)
+function updateDevice(device, callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8080/device/" + device, {
         headers: {
             "Content-Type": "application/json"},
-        method: "get",
+        method: "put",
+        body: JSON.stringify(device)
     })
         .then((response) => {
             if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find owned devices fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
-}
-function getDeviceById(device, callback)
-{
-    fetch("http://localhost:8080/device", {
-        headers: {
-            "Content-Type": "application/json"},
-        method: "get",
-    })
-        .then((response) => {
-            if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find devices fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin update delete fail");
+        callback(null, response.status, response);
+    });
 }
 
-export default {
+export {
     getDevices,
-    findDevices,
-    getDeviceById,
     insertDevice,
-    getPersonById,
-    findPersons,
-    findOwnerDevices,
-    insertPersons,
-    getPersons
+    deletePerson,
+    insertPerson,
+    getPersons,
+    deleteDevice,
+    updatePerson,
+    updateDevice
 };

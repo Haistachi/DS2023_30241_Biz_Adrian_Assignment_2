@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-
-import "react-datepicker/dist/react-datepicker.css";
-
-// CSS Modules, react-datepicker-cssmodules.css
-// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-
+import React from 'react';
+import {Bar} from 'react-chartjs-2';
+function BarChart({chartData})
+{
+    return (<Bar data={chartData}/>);
+}
 const Active = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    return (
-        <DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
-    );
-};
+
+}
 export default Active;
+export {BarChart};

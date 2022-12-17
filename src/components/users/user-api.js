@@ -9,51 +9,47 @@ function getDevices(callback)
     }).then((response) => {
         if (response.status === 200) return response.json();
     }).then((response) => {
-        if (!response){
-            showError("Admin get devices fail");
-            response.json().then(err => callback(null, response.status,  err));}
-        else {response.json().then(json => callback(json, response.status,null));}
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("User get devices fail");
+        callback(null, response.status, response);
     });
 }
 
-function findDevices(device, callback)
+function findOwnerDevices(owner, callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8080/device/" + owner, {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
-    })
-        .then((response) => {
-            if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find devices fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+    }).then((response) => {
+            if (response.status === 200) return response.json();
+    }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("User get his devices fail");
+        callback(null, response.status, response);
+    });
 }
 
-function getDeviceById(device, callback)
+function findDeviceActive(idDevice, date, callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8080/active/" + idDevice + "/" + date.toISOString().split("T")[0], {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
-    })
-        .then((response) => {
-            if (response.status === 200) return response.text();
-        })
-        .then((response) => {
-            if (!response){
-                showError("Find devices fail");
-                response.json().then(err => callback(null, response.status,  err));}
-            else {response.json().then(json => callback(json, response.status,null));}
-        });
+    }).then((response) => {
+        if (response.status === 200) return response.text();
+    }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("User get active fail");
+        callback(null, response.status, response);
+    });
 }
 
-export default {
+export {
     getDevices,
-    findDevices,
-    getDeviceById
+    findOwnerDevices,
+    findDeviceActive
 };
