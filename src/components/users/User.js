@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import table from "../../commons/tables/table";
 import Calendar from "./Calendar";
 import {findDeviceActive, findOwnerDevices, getDevices} from "./user-api";
+import Active from "./Active";
 
 function User(props)
 {
@@ -13,6 +14,7 @@ function User(props)
     const [chartData, setChartData]= useState([]);
     const [calendarDate, setCalendarDate] = useState(new Date());
     const [idDevice, setIdDevice] = useState("");
+    const [activeChart, setActiveChart] = useState(false);
     const onBackDevice=()=>{setPageDevice(pageDevice -1 >-1 ? pageDevice-1:pageDevice)}
     const onNextDevice=()=>{setPageDevice(pageDevice +1 < devices.length/10 ? pageDevice+1:pageDevice)}
     function importData()
@@ -40,8 +42,10 @@ function User(props)
     {
         findDeviceActive(idDevice, calendarDate,(res, stat, err)=>{if(err) console.log(err);
         else {console.log(res);
-            setChartData(res);
+            console.log(res.map((active) => active.consumption));
+            setChartData(res.map((active) => active.consumption));
         }});
+        setActiveChart(true);
     }
     function showError(message) {console.log(message); return(navigate("/error"));}
     function delog() { localStorage.clear(); return(navigate("/"));}
@@ -62,6 +66,7 @@ function User(props)
         <div>
             <div className="Button" >{<Calendar date={calendarDate} setDate={setCalendarDate}/>}
                 <button onClick={statistic}>Statistic</button> </div>
+            {activeChart && <Active chartData={chartData} date={calendarDate}/>}
             <label htmlFor={"idDevice"}>Device: </label>
             <input readOnly={idDevice} type={"idDevice"} placeholder={idDevice} id={"idDevice"} name={"idDevice"}
                    style={{width: "20%", boxShadow: "3px 6px 3px #ccc"}}></input>
@@ -91,7 +96,7 @@ function User(props)
                     </td></tr>
                 </tfoot>
             </table> </div>}
-            <div className="Button" onClick={delog}><button>Delog</button></div>
+            <div className="Button"><button onClick={delog}>Delog</button></div>
         </div>
     </div>);
 }

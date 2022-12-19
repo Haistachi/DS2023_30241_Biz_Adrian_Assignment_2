@@ -39,7 +39,7 @@ function findDeviceActive(idDevice, date, callback)
             "Content-Type": "application/json"},
         method: "get",
     }).then((response) => {
-        if (response.status === 200) return response.text();
+        if (response.status === 200) return response.json();
     }).then((response) => {
         callback(response, response.status, null);
     }).catch((response)=>{

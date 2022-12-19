@@ -4,7 +4,6 @@ import Error from "./components/Error";
 import Admin from "./components/admin/Admin";
 import User from "./components/users/User";
 import RegisterForm from "./components/RegisterForm";
-import PersonContainer from "./components/users/person-container";
 
 function App() {
 
