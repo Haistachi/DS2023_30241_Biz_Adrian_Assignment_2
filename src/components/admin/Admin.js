@@ -111,11 +111,13 @@ function Admin()
             <table cellSpacing={"0"}
                    style={{width: "100%", height: "auto", padding: "5px 10 px"}}>
             <thead><tr>
+                <th>ID</th>
                 <th>User</th>
                 <th>Pass</th>
                 <th>Rol</th>
             </tr></thead>
             <tbody>{persons.slice(10 * pagePersons, 10*pagePersons+10).map((person)=>{return(<tr key={person.id} onClick={()=>setIdPerson(person.id)}>
+                <td>{person.id}</td>
                 <td>{person.username}</td>
                 <td>{person.userPassword}</td>
                 <td>{person.rol}</td>
@@ -147,12 +149,14 @@ function Admin()
         {devices && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>  <table cellSpacing={"0"}
                                                                                         style={{width: "100%", height: "auto", padding: "5px 10 px"}}>
             <thead><tr>
+                <th>ID</th>
                 <th>Person</th>
                 <th>Description</th>
                 <th>Adress</th>
                 <th>Consumption</th>
             </tr></thead>
             <tbody>{devices.slice(10 * pageDevice, 10*pageDevice+10).map((device)=>{return(<tr key={device.id} onClick={()=>setIdDevice(device.id)}>
+                <td>{device.id}</td>
                 <td>{device.person}</td>
                 <td>{device.description}</td>
                 <td>{device.address}</td>

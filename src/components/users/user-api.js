@@ -16,6 +16,22 @@ function getDevices(callback)
     });
 }
 
+function getActives(callback)
+{
+    fetch("http://localhost:8080/active", {
+        headers: {
+            "Content-Type": "application/json"},
+        method: "get",
+    }).then((response) => {
+        if (response.status === 200) return response.json();
+    }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("User get active fail");
+        callback(null, response.status, response);
+    });
+}
+
 function findOwnerDevices(owner, callback)
 {
     fetch("http://localhost:8080/device/" + owner, {
@@ -50,6 +66,7 @@ function findDeviceActive(idDevice, date, callback)
 
 export {
     getDevices,
+    getActives,
     findOwnerDevices,
     findDeviceActive
 };

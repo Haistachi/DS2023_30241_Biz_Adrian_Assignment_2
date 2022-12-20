@@ -60,6 +60,7 @@ function User(props)
                 setDevices(res);
                 console.log(Array.isArray(res));
             }});
+
         }, [])
 
     return(<div><h1>Bine ai venit user {props.name}</h1>
