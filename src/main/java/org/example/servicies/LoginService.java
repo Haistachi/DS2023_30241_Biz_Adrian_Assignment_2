@@ -1,8 +1,8 @@
-package assignment1.EnergyConsum.servicies;
+package org.example.servicies;
 
-import assignment1.EnergyConsum.dtos.PersonDTO;
-import assignment1.EnergyConsum.entities.Person;
-import assignment1.EnergyConsum.repositories.PersonRepository;
+import org.example.dtos.PersonDTO;
+import org.example.entities.Person;
+import org.example.repositories.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package assignment1.EnergyConsum.dtos;
+package org.example.dtos;
 
-import assignment1.EnergyConsum.entities.Person;
-import assignment1.EnergyConsum.entities.Role;
+import org.example.entities.Person;
+import org.example.entities.Role;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

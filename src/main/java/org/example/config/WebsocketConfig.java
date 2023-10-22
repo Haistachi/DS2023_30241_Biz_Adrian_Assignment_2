@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.config;
+package org.example.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

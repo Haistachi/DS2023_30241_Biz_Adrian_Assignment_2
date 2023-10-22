@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.entities;
+package org.example.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,10 +18,10 @@ import java.util.UUID;
 public class Mapping {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Type(type = "uuid-binary")
-    private UUID id;
+    @GeneratedValue(generator = "int")
+    @GenericGenerator(name = "int", strategy = "int")
+    @Type(type = "int")
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

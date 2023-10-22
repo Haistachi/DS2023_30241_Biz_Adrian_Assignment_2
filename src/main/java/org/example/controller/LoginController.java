@@ -1,7 +1,7 @@
-package assignment1.EnergyConsum.controller;
+package org.example.controller;
 
-import assignment1.EnergyConsum.dtos.PersonDTO;
-import assignment1.EnergyConsum.servicies.LoginService;
+import org.example.dtos.PersonDTO;
+import org.example.servicies.LoginService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

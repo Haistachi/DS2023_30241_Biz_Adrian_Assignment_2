@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum;
+package org.example;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import java.sql.*;
 
 @SpringBootApplication
-public class EnergyConsumApplication{
+public class EnergyConsumApplication {
 
 	public static String EXCHANGE_NAME ="Senzor";
 	public static String QUEUE_GENERIC_NAME ="SenzorQueue";

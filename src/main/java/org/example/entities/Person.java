@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.entities;
+package org.example.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "\"user\"")
+@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,10 +20,10 @@ import java.util.UUID;
 public class Person {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Type(type = "uuid-binary")
-    private UUID id;
+    @GeneratedValue(generator = "integer")
+    @GenericGenerator(name = "integer", strategy = "integer")
+    @Type(type = "integer")
+    private Integer id;
 
     private String username;
 

@@ -1,9 +1,9 @@
-package assignment1.EnergyConsum.servicies;
+package org.example.servicies;
 
-import assignment1.EnergyConsum.dtos.PersonDTO;
-import assignment1.EnergyConsum.dtos.PersonDTOBuilder;
-import assignment1.EnergyConsum.entities.Person;
-import assignment1.EnergyConsum.repositories.PersonRepository;
+import org.example.dtos.PersonDTO;
+import org.example.dtos.PersonDTOBuilder;
+import org.example.entities.Person;
+import org.example.repositories.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,7 +30,7 @@ public class PersonServices {
                 .collect(Collectors.toList());
     }
 
-    public PersonDTO findUserById(UUID id) {
+    public PersonDTO findUserById(Integer id) {
         Optional<Person> prosumerOptional = personRepository.findById(id);
         if (!prosumerOptional.isPresent()) {
             LOGGER.error("Person with id {} was not found in db", id);
@@ -38,14 +38,14 @@ public class PersonServices {
         return PersonDTOBuilder.toPersonDTO(prosumerOptional.get());
     }
 
-    public UUID insert(PersonDTO personDTO) {
+    public Integer insert(PersonDTO personDTO) {
         Person person = PersonDTOBuilder.toEntity(personDTO);
         person = personRepository.save(person);
         LOGGER.debug("Person with id {} was inserted in db", person.getId());
         return person.getId();
     }
 
-    public void deleteUser(UUID id) {
+    public void deleteUser(Integer id) {
         Optional<Person> prosumerOptional = personRepository.findById(id);
         if (prosumerOptional.isPresent()) {
             personRepository.delete(prosumerOptional.get());

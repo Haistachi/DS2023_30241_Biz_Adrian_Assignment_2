@@ -1,6 +1,6 @@
-package assignment1.EnergyConsum.controller;
+package org.example.controller;
 
-import assignment1.EnergyConsum.entities.Notification;
+import org.example.entities.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;

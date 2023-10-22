@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.dtos;
+package org.example.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonDTO{
-    private UUID id;
+    private Integer id;
     private String username;
 
     private String userPassword;

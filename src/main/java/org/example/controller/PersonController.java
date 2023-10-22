@@ -1,7 +1,7 @@
-package assignment1.EnergyConsum.controller;
+package org.example.controller;
 
-import assignment1.EnergyConsum.dtos.PersonDTO;
-import assignment1.EnergyConsum.servicies.PersonServices;
+import org.example.dtos.PersonDTO;
+import org.example.servicies.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -29,19 +28,19 @@ public class PersonController {
     }
 
     @PostMapping()
-    public ResponseEntity<UUID> insertPerson(@Valid @RequestBody PersonDTO personDTO) {
-        UUID personID = personService.insert(personDTO);
+    public ResponseEntity<Integer> insertPerson(@Valid @RequestBody PersonDTO personDTO) {
+        Integer personID = personService.insert(personDTO);
         return new ResponseEntity<>(personID, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PersonDTO> getPerson(@PathVariable("id") UUID personId) {
+    public ResponseEntity<PersonDTO> getPerson(@PathVariable("id") Integer personId) {
         PersonDTO dto = personService.findUserById(personId);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deletePerson(@PathVariable("id") UUID personId) {
+    public ResponseEntity<String> deletePerson(@PathVariable("id") Integer personId) {
         personService.deleteUser(personId);
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
