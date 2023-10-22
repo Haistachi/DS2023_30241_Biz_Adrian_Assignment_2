@@ -20,9 +20,6 @@ import java.util.UUID;
 public class Person {
 
     @Id
-    @GeneratedValue(generator = "integer")
-    @GenericGenerator(name = "integer", strategy = "integer")
-    @Type(type = "integer")
     private Integer id;
 
     private String username;
