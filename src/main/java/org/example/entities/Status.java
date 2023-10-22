@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.entities;
+package org.example.entities;
 
 public enum Status {
     JOIN,

@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.entities;
+package org.example.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,18 +21,15 @@ import java.util.UUID;
 public class Active {
 
     @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "uuid2")
-    @Type(type = "uuid-binary")
-    private UUID id;
+    private Integer id;
 
     private Timestamp timestamp;
 
-    private UUID device;
+    private Integer device;
 
     private double consumption;
 
-    public Active(Timestamp timestamp, UUID device, double consumption)
+    public Active(Timestamp timestamp, Integer device, double consumption)
     {
         this.consumption=consumption;
         this.timestamp=timestamp;

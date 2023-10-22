@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.entities;
+package org.example.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -15,7 +15,7 @@ import java.util.UUID;
 @Getter
 public class Consum implements Serializable {
     @JsonProperty("timestamp") String time;
-    @JsonProperty("device_id") UUID id;
+    @JsonProperty("device_id") Integer id;
     @JsonProperty("measurement_value") double value;
 
     @Override

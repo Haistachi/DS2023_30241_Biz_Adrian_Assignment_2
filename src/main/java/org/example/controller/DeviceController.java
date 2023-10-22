@@ -1,7 +1,7 @@
-package assignment1.EnergyConsum.controller;
+package org.example.controller;
 
-import assignment1.EnergyConsum.dtos.DeviceDTO;
-import assignment1.EnergyConsum.servicies.DeviceServices;
+import org.example.dtos.DeviceDTO;
+import org.example.servicies.DeviceServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,19 +28,19 @@ public class DeviceController {
     }
 
     @PostMapping()
-    public ResponseEntity<UUID> insertDevice(@Valid @RequestBody DeviceDTO deviceDTO) {
-        UUID deviceId = deviceServices.insert(deviceDTO);
+    public ResponseEntity<Integer> insertDevice(@Valid @RequestBody DeviceDTO deviceDTO) {
+        Integer deviceId = deviceServices.insert(deviceDTO);
         return new ResponseEntity<>(deviceId, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<DeviceDTO> getDevice(@PathVariable("id") UUID deviceId) {
+    public ResponseEntity<DeviceDTO> getDevice(@PathVariable("id") Integer deviceId) {
         DeviceDTO dto = deviceServices.findDeviceById(deviceId);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deletePerson(@PathVariable("id") UUID deviceId) {
+    public ResponseEntity<String> deletePerson(@PathVariable("id") Integer deviceId) {
         deviceServices.deleteDevice(deviceId);
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
@@ -52,8 +52,8 @@ public class DeviceController {
     }
 
     @GetMapping(value = "/{person}")
-    public ResponseEntity<List<DeviceDTO>> getDeviceByOwner(@PathVariable("person") String name) {
-        List<DeviceDTO> dtos = deviceServices.findDeviceByOwner(name);
+    public ResponseEntity<List<DeviceDTO>> getDeviceByOwner(@PathVariable("person") Integer id) {
+        List<DeviceDTO> dtos = deviceServices.findDeviceByOwner(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 }

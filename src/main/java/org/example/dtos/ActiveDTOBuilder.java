@@ -1,6 +1,6 @@
-package assignment1.EnergyConsum.dtos;
+package org.example.dtos;
 
-import assignment1.EnergyConsum.entities.Active;
+import org.example.entities.Active;
 import lombok.AllArgsConstructor;
 
 import java.sql.Timestamp;

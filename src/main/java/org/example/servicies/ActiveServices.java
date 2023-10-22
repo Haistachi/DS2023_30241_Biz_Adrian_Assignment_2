@@ -1,11 +1,11 @@
-package assignment1.EnergyConsum.servicies;
+package org.example.servicies;
 
-import assignment1.EnergyConsum.dtos.ActiveDTO;
-import assignment1.EnergyConsum.dtos.ActiveDTOBuilder;
-import assignment1.EnergyConsum.entities.Active;
-import assignment1.EnergyConsum.entities.Device;
-import assignment1.EnergyConsum.repositories.ActiveRepository;
-import assignment1.EnergyConsum.repositories.DeviceRepository;
+import org.example.dtos.ActiveDTO;
+import org.example.dtos.ActiveDTOBuilder;
+import org.example.entities.Active;
+import org.example.entities.Device;
+import org.example.repositories.ActiveRepository;
+import org.example.repositories.DeviceRepository;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,7 +34,7 @@ public class ActiveServices {
                 .collect(Collectors.toList());
     }
 
-    public ActiveDTO findActiveById(UUID id) {
+    public ActiveDTO findActiveById(Integer id) {
         Optional<Active> prosumerOptional = activeRepository.findById(id);
         if (!prosumerOptional.isPresent()) {
             LOGGER.error("Active with id {} was not found in db", id);
@@ -42,7 +42,7 @@ public class ActiveServices {
         return ActiveDTOBuilder.toActiveDTO(prosumerOptional.get());
     }
 
-    public UUID insert(ActiveDTO activeDTO) {
+    public Integer insert(ActiveDTO activeDTO) {
         Active active = ActiveDTOBuilder.toEntity(activeDTO);
 
         Active lastActive= activeRepository.findActiveByTimestampAndDevice(active.getTimestamp(), active.getDevice()).get(0);
@@ -63,7 +63,7 @@ public class ActiveServices {
         return active.getId();
     }
 
-    public void deleteActive(UUID id) {
+    public void deleteActive(Integer id) {
         Optional<Active> prosumerOptional = activeRepository.findById(id);
         if (prosumerOptional.isPresent()) {
             activeRepository.delete(prosumerOptional.get());
@@ -77,7 +77,7 @@ public class ActiveServices {
         LOGGER.debug("Active with id {} was updated in db", active.getId());
     }
 
-    public List<ActiveDTO> findActiveByDeviceAndDate(UUID idDevice, String date) {
+    public List<ActiveDTO> findActiveByDeviceAndDate(Integer idDevice, String date) {
         List<Active> activeList = activeRepository.findByDeviceAndTimestampBetween(idDevice,
                 Timestamp.valueOf(date + " 00:00:00.0"),
                 Timestamp.valueOf(date + " 23:59:59.0"));

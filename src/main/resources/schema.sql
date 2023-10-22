@@ -5,9 +5,9 @@
 --
 
 CREATE TABLE public.active (
-                               id bytea NOT NULL,
+                               id int NOT NULL,
                                consumption DOUBLE PRECISION NOT NULL,
-                               device uuid,
+                               device int,
                                "timestamp" character varying(255)
 );
 
@@ -20,30 +20,15 @@ ALTER TABLE public.active OWNER TO postgres;
 --
 
 CREATE TABLE public.device (
-                               id bytea NOT NULL,
+                               id int NOT NULL,
                                address character varying(255),
                                consumption DOUBLE PRECISION NOT NULL,
                                description character varying(255),
-                               person uuid
+                               person int
 );
 
 
 ALTER TABLE public.device OWNER TO postgres;
-
---
--- TOC entry 212 (class 1259 OID 16503)
--- Name: user; Type: TABLE; Schema: public; Owner: postgres
---
-
-CREATE TABLE public."user" (
-                               id bytea NOT NULL,
-                               role character varying(255),
-                               user_password character varying(255),
-                               username character varying(255)
-);
-
-
-ALTER TABLE public."user" OWNER TO postgres;
 
 --
 -- TOC entry 3176 (class 2606 OID 16488)
@@ -61,14 +46,6 @@ ALTER TABLE ONLY public.active
 
 ALTER TABLE ONLY public.device
     ADD CONSTRAINT device_pkey PRIMARY KEY (id);
-
---
--- TOC entry 3182 (class 2606 OID 16509)
--- Name: user user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."user"
-    ADD CONSTRAINT user_pkey PRIMARY KEY (id);
 
 -- Completed on 2022-12-17 20:49:15
 

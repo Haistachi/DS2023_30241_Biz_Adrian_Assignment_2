@@ -1,6 +1,6 @@
-package assignment1.EnergyConsum.dtos;
+package org.example.dtos;
 
-import assignment1.EnergyConsum.entities.Device;
+import org.example.entities.Device;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

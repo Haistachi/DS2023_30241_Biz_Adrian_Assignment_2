@@ -1,8 +1,8 @@
-package assignment1.EnergyConsum.servicies;
+package org.example.servicies;
 
-import assignment1.EnergyConsum.EnergyConsumApplication;
-import assignment1.EnergyConsum.dtos.ActiveDTO;
-import assignment1.EnergyConsum.entities.Consum;
+import org.example.EnergyConsumApplicationDevice;
+import org.example.dtos.ActiveDTO;
+import org.example.entities.Consum;
 import lombok.AllArgsConstructor;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
@@ -18,7 +18,7 @@ import java.util.Date;
 public class ReciveService {
 
     private final ActiveServices activeServices;
-    @RabbitListener(queues = EnergyConsumApplication.QUEUE_SPECIFIC_NAME)
+    @RabbitListener(queues = EnergyConsumApplicationDevice.QUEUE_SPECIFIC_NAME)
     public void receiveMessage(final Consum customMessage) {
         System.out.println("Received message and deserialized to 'CustomMessage': " + customMessage.toString());
         ActiveDTO activeDTO= new ActiveDTO();

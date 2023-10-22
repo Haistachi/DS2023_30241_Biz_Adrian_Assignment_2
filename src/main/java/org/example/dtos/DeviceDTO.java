@@ -1,4 +1,4 @@
-package assignment1.EnergyConsum.dtos;
+package org.example.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +13,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeviceDTO {
-    private UUID id;
-    private UUID person;
+    private Integer id;
+    private Integer person;
     private String description;
     private String address;
     private double consumption;

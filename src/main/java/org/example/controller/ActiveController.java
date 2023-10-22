@@ -1,7 +1,7 @@
-package assignment1.EnergyConsum.controller;
+package org.example.controller;
 
-import assignment1.EnergyConsum.dtos.ActiveDTO;
-import assignment1.EnergyConsum.servicies.ActiveServices;
+import org.example.dtos.ActiveDTO;
+import org.example.servicies.ActiveServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,13 +23,13 @@ public class ActiveController {
     }
 
     @PostMapping()
-    public ResponseEntity<UUID> insertActive(@Valid @RequestBody ActiveDTO activeDTO) {
-        UUID personID = activeServices.insert(activeDTO);
+    public ResponseEntity<Integer> insertActive(@Valid @RequestBody ActiveDTO activeDTO) {
+        Integer personID = activeServices.insert(activeDTO);
         return new ResponseEntity<>(personID, HttpStatus.CREATED);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ActiveDTO> getActive(@PathVariable("id") UUID activeId) {
+    public ResponseEntity<ActiveDTO> getActive(@PathVariable("id") Integer activeId) {
         ActiveDTO dto = activeServices.findActiveById(activeId);
         return new ResponseEntity<>(dto, HttpStatus.OK);
     }
@@ -41,7 +41,7 @@ public class ActiveController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteActive(@PathVariable("id") UUID activeId) {
+    public ResponseEntity<String> deleteActive(@PathVariable("id") Integer activeId) {
         activeServices.deleteActive(activeId);
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
@@ -53,7 +53,7 @@ public class ActiveController {
     }
 
     @GetMapping(value = "/{device}/{date}")
-    public ResponseEntity<List<ActiveDTO>> getDeviceByOwner(@PathVariable("device") UUID device,
+    public ResponseEntity<List<ActiveDTO>> getDeviceByOwner(@PathVariable("device") Integer device,
                                                             @PathVariable("date") String date) {
         System.out.println(device);
         System.out.println(date);

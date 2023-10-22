@@ -9,7 +9,6 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.UUID;
 
 @Entity
 @Table(name = "\"device\"")
@@ -20,9 +19,6 @@ import java.util.UUID;
 public class Device {
 
     @Id
-    @GeneratedValue(generator = "Integer")
-    @GenericGenerator(name = "Integer", strategy = "Integer")
-    @Type(type = "Integer")
     private Integer id;
 
     private Integer person;
@@ -31,9 +27,9 @@ public class Device {
 
     private String address;
 
-    private int consumption;
+    private double consumption;
 
-    public Device(Integer person, String description , String address, int consumption)
+    public Device(Integer person, String description , String address, double consumption)
     {
         this.person=person;
         this.description=description;

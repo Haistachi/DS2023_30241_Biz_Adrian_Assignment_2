@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Bean;
 import java.sql.*;
 
 @SpringBootApplication
-public class EnergyConsumApplication {
+public class EnergyConsumApplicationDevice {
 
 	public static String EXCHANGE_NAME ="Senzor";
 	public static String QUEUE_GENERIC_NAME ="SenzorQueue";
@@ -60,7 +60,7 @@ public class EnergyConsumApplication {
 	}
 
 	public static void main(String[] args) {
-		Logger logger = LoggerFactory.getLogger(EnergyConsumApplication.class);
+		Logger logger = LoggerFactory.getLogger(EnergyConsumApplicationDevice.class);
 		Connection connection = null;
 		Statement statement = null;
 		try {
@@ -94,6 +94,6 @@ public class EnergyConsumApplication {
 				logger.error(e.toString());
 			}
 		}
-		SpringApplication.run(EnergyConsumApplication.class, args);
+		SpringApplication.run(EnergyConsumApplicationDevice.class, args);
 	}
 }
