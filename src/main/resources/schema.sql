@@ -4,22 +4,21 @@
 -- Name: active; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.active (
+CREATE TABLE IF NOT EXISTS public.active (
                                id int NOT NULL,
                                consumption DOUBLE PRECISION NOT NULL,
                                device int,
                                "timestamp" character varying(255)
 );
 
-
-ALTER TABLE public.active OWNER TO postgres;
+ALTER TABLE IF EXISTS public.active OWNER TO postgres;
 
 --
 -- TOC entry 210 (class 1259 OID 16489)
 -- Name: device; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE public.device (
+CREATE TABLE IF NOT EXISTS public.device (
                                id int NOT NULL,
                                address character varying(255),
                                consumption DOUBLE PRECISION NOT NULL,
@@ -27,14 +26,15 @@ CREATE TABLE public.device (
                                person int
 );
 
-
-ALTER TABLE public.device OWNER TO postgres;
+ALTER TABLE IF EXISTS public.device OWNER TO postgres;
 
 --
 -- TOC entry 3176 (class 2606 OID 16488)
 -- Name: active active_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY public.active
+    DROP CONSTRAINT IF EXISTS active_pkey;
 ALTER TABLE ONLY public.active
     ADD CONSTRAINT active_pkey PRIMARY KEY (id);
 
@@ -44,6 +44,8 @@ ALTER TABLE ONLY public.active
 -- Name: device device_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY public.device
+    DROP CONSTRAINT IF EXISTS device_pkey;
 ALTER TABLE ONLY public.device
     ADD CONSTRAINT device_pkey PRIMARY KEY (id);
 

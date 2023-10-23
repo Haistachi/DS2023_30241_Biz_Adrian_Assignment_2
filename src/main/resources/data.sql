@@ -1,7 +1,9 @@
 
 insert into device (id, address, consumption, description, person)
 values (1, 'ma doare', 3, 'telefon', 2),
-       (2, 'str Drum', 1, 'ceas', 2);
+       (2, 'str Drum', 1, 'ceas', 2)
+    ON CONFLICT (id)
+DO NOTHING;
 
 insert into active (id, consumption, device, "timestamp")
 values (1, 2, 1, '2022-12-17 08:00:00'),
@@ -27,4 +29,6 @@ values (1, 2, 1, '2022-12-17 08:00:00'),
        (21, 18, 1, '2022-12-17 20:00:00'),
        (22, 19, 1, '2022-12-17 21:00:00'),
        (23, 20, 1, '2022-12-17 22:00:00'),
-       (24, 21, 1, '2022-12-17 23:00:00');
+       (24, 21, 1, '2022-12-17 23:00:00')
+    ON CONFLICT (id)
+DO NOTHING;
