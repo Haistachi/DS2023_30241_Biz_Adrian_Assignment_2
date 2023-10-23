@@ -10,4 +10,6 @@ values ('1', 'admin', 'Crusader2', 'Haistachi'),
        ('8', 'user', 'user', 'Parola'),
        ('9', 'user', '123', 'User3'),
        ('10', 'user', '123', 'Pag'),
-       ('11', 'user', '123', 'Noua');
+       ('11', 'user', '123', 'Noua')
+    ON CONFLICT (id)
+DO NOTHING;
