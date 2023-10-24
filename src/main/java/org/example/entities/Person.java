@@ -12,7 +12,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "user")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,10 +19,11 @@ import java.util.UUID;
 public class Person {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(nullable = false,unique = true)
     private String username;
-
+    @Column(nullable = false)
     private String userPassword;
 
     @Enumerated(value = EnumType.STRING)
@@ -42,6 +42,7 @@ public class Person {
         this.userPassword = userPassword;
         this.role = role;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(username);

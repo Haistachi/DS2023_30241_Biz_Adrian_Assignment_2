@@ -1,5 +1,5 @@
 
-insert into "user" (id, role, user_password, username)
+insert into person (id, role, user_password, username)
 values ('1', 'admin', 'Crusader2', 'Haistachi'),
        ('2', 'user', '123', 'User'),
        ('3', 'user', 'minune', 'Alin'),

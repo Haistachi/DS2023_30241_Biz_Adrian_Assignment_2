@@ -1,11 +1,11 @@
-
+/*
 --
 -- TOC entry 212 (class 1259 OID 16503)
 -- Name: user; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE IF NOT EXISTS public."user" (
-                               id int NOT NULL,
+                               id int NOT NULL AUTO_INCREMENT,
                                role character varying(255),
                                user_password character varying(255),
                                username character varying(255)
@@ -28,3 +28,4 @@ ALTER TABLE ONLY public."user"
 --
 -- PostgreSQL database dump complete
 --
+*/

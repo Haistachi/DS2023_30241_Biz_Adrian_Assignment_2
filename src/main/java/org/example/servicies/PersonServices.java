@@ -59,6 +59,10 @@ public class PersonServices {
         LOGGER.debug("Person with id {} was updated in db", person.getId());
     }
 
+    public List<Person> getAll(){
+        return personRepository.findAll();
+    }
+
 //    @PostConstruct
 //    public void add()
 //    {
