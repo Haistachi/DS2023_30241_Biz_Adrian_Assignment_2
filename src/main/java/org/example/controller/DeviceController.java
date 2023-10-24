@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @CrossOrigin
@@ -40,14 +39,14 @@ public class DeviceController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deletePerson(@PathVariable("id") Integer deviceId) {
+    public ResponseEntity<String> deleteDevice(@PathVariable("id") Integer deviceId) {
         deviceServices.deleteDevice(deviceId);
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<String> updatePerson(@Valid @RequestBody DeviceDTO device) {
-        deviceServices.update(device);
+    public ResponseEntity<String> updateDevice(@Valid @RequestBody DeviceDTO deviceDTO) {
+        deviceServices.update(deviceDTO);
         return new ResponseEntity<>("Success Update", HttpStatus.OK);
     }
 

@@ -1,4 +1,4 @@
-
+/*
 --
 -- TOC entry 209 (class 1259 OID 16482)
 -- Name: active; Type: TABLE; Schema: public; Owner: postgres
@@ -54,3 +54,4 @@ ALTER TABLE ONLY public.device
 --
 -- PostgreSQL database dump complete
 --
+*/

@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "\"device\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,12 +18,13 @@ import java.util.Objects;
 public class Device {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(nullable = false)
     private Integer person;
-
+    @Column(nullable = false)
     private String description;
-
+    @Column(nullable = false)
     private String address;
 
     private double consumption;

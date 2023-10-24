@@ -13,7 +13,6 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "\"active\"")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -21,12 +20,13 @@ import java.util.UUID;
 public class Active {
 
     @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(nullable = false)
     private Timestamp timestamp;
-
+    @Column(nullable = false)
     private Integer device;
-
+    @Column(nullable = false)
     private double consumption;
 
     public Active(Timestamp timestamp, Integer device, double consumption)

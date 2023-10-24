@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -13,6 +15,9 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DeviceDTO {
+
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer person;
     private String description;
