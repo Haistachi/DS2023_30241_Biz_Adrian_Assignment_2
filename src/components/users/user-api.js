@@ -2,7 +2,7 @@ function showError(message) {console.log(message);}
 
 function getDevices(callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8081/device", {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -18,7 +18,7 @@ function getDevices(callback)
 
 function getActives(callback)
 {
-    fetch("http://localhost:8080/active", {
+    fetch("http://localhost:8082/active", {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -34,7 +34,7 @@ function getActives(callback)
 
 function findOwnerDevices(owner, callback)
 {
-    fetch("http://localhost:8080/device/" + owner, {
+    fetch("http://localhost:8082/device/" + owner, {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -50,7 +50,7 @@ function findOwnerDevices(owner, callback)
 
 function findDeviceActive(idDevice, date, callback)
 {
-    fetch("http://localhost:8080/active/" + idDevice + "/" + date.toISOString().split("T")[0], {
+    fetch("http://localhost:8082/active/" + idDevice + "/" + date.toISOString().split("T")[0], {
         headers: {
             "Content-Type": "application/json"},
         method: "get",

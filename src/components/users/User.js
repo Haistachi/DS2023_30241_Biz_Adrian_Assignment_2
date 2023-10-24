@@ -17,6 +17,23 @@ function User(props)
     const [activeChart, setActiveChart] = useState(false);
     const onBackDevice=()=>{setPageDevice(pageDevice -1 >-1 ? pageDevice-1:pageDevice)}
     const onNextDevice=()=>{setPageDevice(pageDevice +1 < devices.length/10 ? pageDevice+1:pageDevice)}
+
+    var tableDevice = document.getElementById("DeviceTable");
+    if (tableDevice) {
+        for (var i = 0; i < tableDevice.rows.length; i++) {
+            tableDevice.rows[i].onclick = function() {
+                deviceTableText(this);
+            };
+        }
+    }
+    function deviceTableText(tableRow) {
+        var id = tableRow.childNodes[0].innerHTML;
+        var owner = tableRow.childNodes[1].innerHTML;
+        var address = tableRow.childNodes[2].innerHTML;
+        var consumption = tableRow.childNodes[3].innerHTML;
+        var obj = {'Id': id, 'Owner': owner, 'Address': address, 'Consumption': consumption};
+        console.log(obj);
+    }
     function importData()
     {
         return({
@@ -73,7 +90,7 @@ function User(props)
                    style={{width: "20%", boxShadow: "3px 6px 3px #ccc"}}></input>
             <h2>Your devices</h2>
             {devices && <div style={{width: "80%", boxShadow: "3px 6px 3px #ccc"}}>
-                <table cellSpacing={"0"} style={{width: "100%", height: "auto", padding: "5px 10 px", textAlign:"center"}}>
+                <table cellSpacing={"0"} style={{width: "100%", height: "auto", padding: "5px 10 px", textAlign:"center"}} id={"DeviceTable"}>
                 <thead><tr>
                     <th>ID</th>
                     <th>Person</th>
@@ -88,6 +105,7 @@ function User(props)
                     <td>{device.address}</td>
                     <td>{device.consumption}</td>
                 </tr>)})}</tbody>
+            </table>
                 <tfoot>
                 <tr><td></td>
                     <td style={{padding: "10px 0"}}>
@@ -95,8 +113,7 @@ function User(props)
                         <label style={{padding: "0 lem"}}>{pageDevice+1}</label>
                         <button onClick={onNextDevice}>Next</button>
                     </td></tr>
-                </tfoot>
-            </table> </div>}
+                </tfoot></div>}
             <div className="Button"><button onClick={delog}>Delog</button></div>
         </div>
     </div>);

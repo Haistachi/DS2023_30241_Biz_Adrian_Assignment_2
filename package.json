@@ -17,6 +17,8 @@
     "react-scripts": "5.0.1",
     "react-table": "^7.8.0",
     "reactstrap": "^9.1.5",
+    "sockjs-client": "^1.6.1",
+    "stompjs": "^2.3.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

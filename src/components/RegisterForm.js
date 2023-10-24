@@ -11,7 +11,7 @@ function RegisterForm()
         e.preventDefault();
         console.log(name);
         console.log(pass);
-        fetch("http://localhost:8080/person", {
+        fetch("http://localhost:8081/person", {
             headers: {
                 "Content-Type": "application/json"},
             method: "post",

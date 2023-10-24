@@ -1,7 +1,7 @@
 function showError(message) {console.log(message);}
 function getPersons(callback)
 {
-    fetch("http://localhost:8080/person", {
+    fetch("http://localhost:8081/person", {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -17,7 +17,7 @@ function getPersons(callback)
 
 function insertPerson(user, callback)
 {
-    fetch("http://localhost:8080/person", {
+    fetch("http://localhost:8081/person", {
         headers: {
             "Content-Type": "application/json"},
         method: "post",
@@ -35,7 +35,7 @@ function insertPerson(user, callback)
 
 function deletePerson(userId, callback)
 {
-    fetch("http://localhost:8080/person/" + userId, {
+    fetch("http://localhost:8081/person/" + userId, {
         headers: {
             "Content-Type": "application/json"},
         method: "delete",
@@ -52,7 +52,7 @@ function deletePerson(userId, callback)
 
 function updatePerson(user, callback)
 {
-    fetch("http://localhost:8080/person/" + user.id, {
+    fetch("http://localhost:8081/person/" + user.id, {
         headers: {
             "Content-Type": "application/json"},
         method: "put",
@@ -70,7 +70,7 @@ function updatePerson(user, callback)
 
 function getDevices(callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8082/device", {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -86,7 +86,7 @@ function getDevices(callback)
 
 function insertDevice(device, callback)
 {
-    fetch("http://localhost:8080/device", {
+    fetch("http://localhost:8082/device", {
         headers: {
             "Content-Type": "application/json"},
         method: "post",
@@ -105,7 +105,7 @@ function insertDevice(device, callback)
 
 function deleteDevice(deviceId, callback)
 {
-    fetch("http://localhost:8080/device/" + deviceId, {
+    fetch("http://localhost:8082/device/" + deviceId, {
         headers: {
             "Content-Type": "application/json"},
         method: "delete",
@@ -115,14 +115,14 @@ function deleteDevice(deviceId, callback)
         }).then((response) => {
         callback(response, response.status, null);
     }).catch((response)=>{
-        showError("Admin delete device fail");
+        //showError("Admin delete device fail");
         callback(null, response.status, response);
     });
 }
 
 function updateDevice(device, callback)
 {
-    fetch("http://localhost:8080/device/" + device, {
+    fetch("http://localhost:8082/device/" + device.id, {
         headers: {
             "Content-Type": "application/json"},
         method: "put",
