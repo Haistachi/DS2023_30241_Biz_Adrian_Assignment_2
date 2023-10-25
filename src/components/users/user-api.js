@@ -1,21 +1,5 @@
 function showError(message) {console.log(message);}
 
-function getDevices(callback)
-{
-    fetch("http://localhost:8081/device", {
-        headers: {
-            "Content-Type": "application/json"},
-        method: "get",
-    }).then((response) => {
-        if (response.status === 200) return response.json();
-    }).then((response) => {
-        callback(response, response.status, null);
-    }).catch((response)=>{
-        showError("User get devices fail");
-        callback(null, response.status, response);
-    });
-}
-
 function getActives(callback)
 {
     fetch("http://localhost:8082/active", {
@@ -65,7 +49,6 @@ function findDeviceActive(idDevice, date, callback)
 }
 
 export {
-    getDevices,
     getActives,
     findOwnerDevices,
     findDeviceActive

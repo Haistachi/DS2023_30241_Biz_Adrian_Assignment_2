@@ -2,7 +2,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import table from "../../commons/tables/table";
 import Calendar from "./Calendar";
-import {findDeviceActive, findOwnerDevices, getDevices} from "./user-api";
+import {findDeviceActive, findOwnerDevices} from "./user-api";
 import Active from "./Active";
 
 function User(props)
