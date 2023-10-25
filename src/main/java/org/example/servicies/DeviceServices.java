@@ -35,7 +35,7 @@ public class DeviceServices {
         return DeviceDTOBuilder.toDeviceDTO(prosumerOptional.get());
     }
 
-    public List<DeviceDTO> findDeviceByOwner(Integer id) {
+    public List<DeviceDTO> findDeviceByPerson(Integer id) {
         List<Device> deviceList = deviceRepository.findByPerson(id);
         return deviceList.stream()
                 .map(DeviceDTOBuilder::toDeviceDTO)

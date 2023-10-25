@@ -52,7 +52,7 @@ public class DeviceController {
 
     @GetMapping(value = "/{person}")
     public ResponseEntity<List<DeviceDTO>> getDeviceByOwner(@PathVariable("person") Integer id) {
-        List<DeviceDTO> dtos = deviceServices.findDeviceByOwner(id);
+        List<DeviceDTO> dtos = deviceServices.findDeviceByPerson(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 }
