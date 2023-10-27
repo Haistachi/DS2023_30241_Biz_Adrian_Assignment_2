@@ -1,12 +1,20 @@
-FROM node:16-alpine3.16
+# Folosim imagine oficială Node.js ca bază
+FROM node:14
 
+# Setăm directorul de lucru în container
 WORKDIR /app
-ENV PATH /app/node_modules/.bin:$PATH
-
-COPY package.json ./
+# Copiem fișierele de proiect în container
+COPY package*.json ./
 COPY package-lock.json ./
-RUN npm install
+COPY . .
+# Instalăm dependențele
+RUN yarn install
 
-COPY . ./
+# Construim aplicația React
+RUN yarn build
 
-CMD ["npm", "start"]
+# Expunem portul 3000
+EXPOSE 3000
+
+# Comanda pentru a porni aplicația React
+CMD ["yarn", "start"]

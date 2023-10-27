@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  persons:
+    image: backend:latest
+    ports:
+      - "8081:8081"
+    build:
+      context: persoane-be
+      dockerfile: Dockerfile
+    container_name: persoane
+    depends_on:
+      - db-user
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-user:5432/persoane
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=A.Hunu2000
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  devices:
+    image: backend:latest
+    ports:
+      - "8082:8082"
+    build:
+      context: devices-be
+      dockerfile: Dockerfile
+    container_name: devices
+    depends_on:
+      - db-user
+
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-user:5432/devices
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=A.Hunu2000
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  frontend:
+    image: frontend:latest
+    ports:
+      - "3000:3000"
+    build:
+      context: react-demo-ana
+      dockerfile: Dockerfile
+    container_name: frontend
+
+  db-user:
+    image: 'postgres:13.1-alpine'
+    container_name: db-user
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=A.Hunu2000
+      - POSTGRES_DB=persoane
