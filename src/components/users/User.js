@@ -2,13 +2,15 @@ import {Link, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import table from "../../commons/tables/table";
 import Calendar from "./Calendar";
-import {findDeviceActive, findOwnerDevices} from "./user-api";
+import {findDeviceActive, findDevicesByOwner, findPersonIdByName, getActives} from "./user-api";
 import Active from "./Active";
 
 function User(props)
 {
+    let nr=0;
     const navigate = useNavigate();
     const [name, setName] = useState("");
+    const [id, setId] = useState(0);
     const [devices, setDevices] = useState([]);
     const [pageDevice, setPageDevice]= useState(0);
     const [chartData, setChartData]= useState([]);
@@ -71,13 +73,18 @@ function User(props)
             //console.log(localStorage.getItem("rol"));
             if(localStorage.getItem("rol") !== "user")
                 return(navigate("/error"));
-            setName(localStorage.getItem("name"));
-            findOwnerDevices(name,(res, stat, err)=>{if(err) console.log(err);
-            else {console.log(res);
-                setDevices(res);
-                console.log(Array.isArray(res));
+            setName(localStorage.getItem("user"));
+            findPersonIdByName(localStorage.getItem("user"),(response, stat, err)=>{if(err) console.log(err);
+            else {console.log(`response for name: ${response}`);
+                nr=response;
+                setId(Number(response));
+                console.log(`id from name: ${id}`);
+                findDevicesByOwner(nr,(res, stat, err)=>{if(err) console.log(err);
+                else {console.log(res);
+                    setDevices(res);
+                    console.log(Array.isArray(res));
+                }});
             }});
-
         }, [])
 
     return(<div><h1>Bine ai venit user {props.name}</h1>
@@ -106,14 +113,11 @@ function User(props)
                     <td>{device.consumption}</td>
                 </tr>)})}</tbody>
             </table>
-                <tfoot>
-                <tr><td></td>
-                    <td style={{padding: "10px 0"}}>
+                <div style={{padding: "10px 0"}}>
                         <button onClick={onBackDevice}>Back</button>
                         <label style={{padding: "0 lem"}}>{pageDevice+1}</label>
                         <button onClick={onNextDevice}>Next</button>
-                    </td></tr>
-                </tfoot></div>}
+                </div></div>}
             <div className="Button"><button onClick={delog}>Delog</button></div>
         </div>
     </div>);

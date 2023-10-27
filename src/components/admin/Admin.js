@@ -192,12 +192,11 @@ function Admin()
                 <td>{person.rol}</td>
             </tr>)})}</tbody>
         </table>
-            <tfoot><tr><td></td>
-                <td style={{padding: "10px 0"}}>
+                <div style={{padding: "10px 0"}}>
                     <button onClick={onBackPersons}>Back</button>
                     <label style={{padding: "0 lem"}}>{pagePersons+1}</label>
                     <button onClick={onNextPersons}>Next</button>
-                </td></tr></tfoot>
+                </div>
         </div>}
 
         <div>
@@ -238,14 +237,11 @@ function Admin()
                 <td>{device.consumption}</td>
             </tr>)})}</tbody>
         </table>
-            <tfoot>
-            <tr><td></td>
-                <td style={{padding: "10px 0"}}>
+                <div style={{padding: "10px 0"}}>
                     <button onClick={onBackDevice}>Back</button>
                     <label style={{padding: "0 lem"}}>{pageDevice+1}</label>
                     <button onClick={onNextDevice}>Next</button>
-                </td></tr>
-            </tfoot>
+                </div>
         </div>}
         <div className="Button" ><button onClick={delog}>Delog</button></div>
     </div>);
