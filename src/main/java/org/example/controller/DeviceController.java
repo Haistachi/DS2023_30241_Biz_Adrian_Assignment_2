@@ -50,7 +50,7 @@ public class DeviceController {
         return new ResponseEntity<>("Success Update", HttpStatus.OK);
     }
 
-    @GetMapping(value = "/{person}")
+    @GetMapping(value = "/owner/{person}")
     public ResponseEntity<List<DeviceDTO>> getDeviceByOwner(@PathVariable("person") Integer id) {
         List<DeviceDTO> dtos = deviceServices.findDeviceByPerson(id);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
