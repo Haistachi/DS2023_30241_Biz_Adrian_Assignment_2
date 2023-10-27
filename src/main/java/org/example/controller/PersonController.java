@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -49,6 +50,12 @@ public class PersonController {
     public ResponseEntity<String> updatePerson(@Valid @RequestBody PersonDTO personDTO) {
         personService.update(personDTO);
         return new ResponseEntity<>("Success Update", HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/id/{name}")
+    public ResponseEntity<Integer> getIdPerson(@PathVariable("name") String name) {
+        PersonDTO dto = personService.findUserByUsername(name);
+        return new ResponseEntity<>(dto.getId(), HttpStatus.OK);
     }
 
 }

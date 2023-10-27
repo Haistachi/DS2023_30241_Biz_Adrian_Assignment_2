@@ -59,6 +59,14 @@ public class PersonServices {
         LOGGER.debug("Person with id {} was updated in db", person.getId());
     }
 
+    public PersonDTO findUserByUsername(String username) {
+        Optional<Person> prosumerOptional = personRepository.findByUsername(username);
+        if (!prosumerOptional.isPresent()) {
+            LOGGER.error("Person with id {} was not found in db", username);
+        }
+        return PersonDTOBuilder.toPersonDTO(prosumerOptional.get());
+    }
+
     public List<Person> getAll(){
         return personRepository.findAll();
     }
