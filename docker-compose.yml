@@ -6,11 +6,9 @@ services:
     ports:
       - "8081:8081"
     build:
-      context: persoane-be
+      context: https://github.com/Haistachi/DS2023_30241_Biz_Adrian_Assignment_1_user-end.git
       dockerfile: Dockerfile
     container_name: persoane
-    depends_on:
-      - localhost
 
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/persoane
@@ -23,11 +21,9 @@ services:
     ports:
       - "8082:8082"
     build:
-      context: devices-be
+      context: https://github.com/Haistachi/DS2023_30241_Biz_Adrian_Assignment_1_device-end.git
       dockerfile: Dockerfile
     container_name: devices
-    depends_on:
-      - localhost
 
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/devices
@@ -40,7 +36,7 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: asigment1_front-end
+      context: https://github.com/Haistachi/DS2023_30241_Biz_Adrian_Assignment_1_front-end.git
       dockerfile: Dockerfile
     container_name: frontend
 
