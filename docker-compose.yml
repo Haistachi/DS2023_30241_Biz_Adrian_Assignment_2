@@ -40,12 +40,12 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: react-demo-ana
+      context: asigment1_front-end
       dockerfile: Dockerfile
     container_name: frontend
 
   db-user:
-    image: 'postgres:13.1-alpine'
+    image: 'postgres:16.0'
     container_name: db-user
     ports:
       - "5432:5432"
