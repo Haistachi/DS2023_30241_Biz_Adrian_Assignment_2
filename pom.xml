@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>assignment1</groupId>
-    <artifactId>EnergyConsum</artifactId>
+    <artifactId>EnergyConsumDevices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>EnergyConsum</name>
-    <description>Demo project for Spring Boot</description>
+    <description>Operatii si servicii pentru devices</description>
     <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
