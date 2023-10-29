@@ -11,8 +11,8 @@
     <groupId>assignment1</groupId>
     <artifactId>EnergyConsum</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>EnergyConsum</name>
-    <description>Demo project for Spring Boot</description>
+    <name>EnergyConsumPersoane</name>
+    <description>Operatii si servicii pentru persoane</description>
     <packaging>jar</packaging>
     <properties>
         <java.version>11</java.version>
