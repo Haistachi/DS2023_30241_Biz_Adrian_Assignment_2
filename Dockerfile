@@ -1,20 +1,17 @@
-# Folosim imagine oficială Node.js ca bază
+# Use an official Node.js runtime as a parent image
 FROM node:14
 
-# Setăm directorul de lucru în container
+# Set the working directory to /app
 WORKDIR /app
-# Copiem fișierele de proiect în container
+
+# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-COPY package-lock.json ./
+
+# Install any needed packages
+RUN npm install
+
+# Copy the rest of your application code to the working directory
 COPY . .
-# Instalăm dependențele
-RUN yarn install
 
-# Construim aplicația React
-RUN yarn build
-
-# Expunem portul 3000
-EXPOSE 3000
-
-# Comanda pentru a porni aplicația React
-CMD ["yarn", "start"]
+# Specify the command to run your React app
+CMD ["npm", "start"]
