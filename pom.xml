@@ -11,7 +11,7 @@
     <groupId>assignment1</groupId>
     <artifactId>EnergyConsumDevices</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>EnergyConsum</name>
+    <name>EnergyConsumDevices</name>
     <description>Operatii si servicii pentru devices</description>
     <packaging>jar</packaging>
     <properties>
