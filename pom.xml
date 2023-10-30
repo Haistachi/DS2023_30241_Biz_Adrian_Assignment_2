@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>assignment1</groupId>
-    <artifactId>EnergyConsum</artifactId>
+    <artifactId>EnergyConsumPersoane</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>EnergyConsumPersoane</name>
     <description>Operatii si servicii pentru persoane</description>
