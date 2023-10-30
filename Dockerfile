@@ -1,6 +1,4 @@
-
-FROM openjdk:11
-WORKDIR /app
-COPY out/artifacts/devices_be_jar/devices-be.jar devices.jar
-EXPOSE 8082
+FROM openjdk:17
+ADD target/EnergyConsumDevices-0.0.1-SNAPSHOT.jar devices.jar
 ENTRYPOINT ["java", "-jar", "devices.jar"]
+EXPOSE 8082
