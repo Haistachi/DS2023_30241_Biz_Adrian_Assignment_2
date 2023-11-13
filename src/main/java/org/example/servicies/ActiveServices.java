@@ -16,7 +16,6 @@ import java.sql.Timestamp;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
@@ -55,7 +54,6 @@ public class ActiveServices {
             message=message.concat(timestamp.toString());
             Device device= deviceRepository.getById(active.getDevice());
             String reciver= device.getPerson().toString();
-            //Notification notification= new Notification(reciver, message);
         }
 
         active = activeRepository.save(active);
