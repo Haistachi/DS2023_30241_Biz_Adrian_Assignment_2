@@ -1,4 +1,4 @@
-package ro.tuc.ds2020;
+package measurements;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -8,7 +8,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = Ds2020Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(locations = "classpath:application-test.properties")
 @AutoConfigureMockMvc
 public class Ds2020TestConfig {
