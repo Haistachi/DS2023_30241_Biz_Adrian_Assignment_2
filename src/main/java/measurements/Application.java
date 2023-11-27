@@ -50,7 +50,7 @@ public class Application extends SpringBootServletInitializer {
         // filtrezi pe ultima ora
         //parcurgi lista faci suma
         Treshhold t= treshholdService.findThreshholdByIdDevice(m.getIdDevice());
-        List<Measurement> lMeasurement=  measurementService.findMeasurementsForDevice(m.getIdDevice());
+        List<Measurement> lMeasurement=  measurementService.findMeasurementsByIdDevice(m.getIdDevice());
         List<Measurement> lTodayMeasurements = lMeasurement.stream()
                 .filter( l -> l.getTimest().isAfter(preTime) && l.getTimest().isBefore(postTime))
                 .collect(Collectors.toList());
