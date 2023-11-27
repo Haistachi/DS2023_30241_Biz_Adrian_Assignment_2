@@ -44,7 +44,7 @@ public class Application extends SpringBootServletInitializer {
         m.setTimest(prototipe.getTimest());
         System.out.println(m.toString());
 
-        measurementService.saveMeasurement(m);
+        measurementService.insert(m);
 
         // ti o lista cu rezultatul de la getAllMeasurementsByDeviceId
         // filtrezi pe ultima ora

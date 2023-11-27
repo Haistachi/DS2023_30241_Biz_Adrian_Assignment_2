@@ -58,7 +58,7 @@ public class TreshholdService {
         return treshhold.getIdTreshhold();
     }
 
-    public void deleteDevice(Integer id) {
+    public void deleteTreshhold(Integer id) {
         Optional<Treshhold> treshholdOptional = iTreshholdRepository.findById(id);
         if (treshholdOptional.isPresent()) {
             iTreshholdRepository.delete(treshholdOptional.get());

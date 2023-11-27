@@ -34,4 +34,17 @@ public class MeasurementController {
         List<Measurement> dtos = measurementService.findMeasurementsByIdDeviceAndTimest(device, date);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/{device}")
+    public ResponseEntity<List<Measurement>> getMeasurementByDevice(@PathVariable("device") Integer device) {
+        //System.out.println(device);
+        List<Measurement> dtos = measurementService.findMeasurementsByIdDevice(device);
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteMeasurement(@PathVariable("id") Integer idMeasurement) {
+        measurementService.deleteMeasurement(idMeasurement);
+        return new ResponseEntity<>("Success delete", HttpStatus.OK);
+    }
 }
