@@ -1,5 +1,6 @@
 package measurements.controllers;
 
+import lombok.AllArgsConstructor;
 import measurements.entities.Measurement;
 import measurements.entities.Treshhold;
 import measurements.services.TreshholdService;
@@ -12,36 +13,63 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-@CrossOrigin(origins = "*")
-@Controller
+@RestController
+@CrossOrigin
 @RequestMapping(value = "/treshhold")
 public class TreshholdController {
 
     @Autowired
-    TreshholdService treshholdService;
+    public TreshholdController(TreshholdService treshholdService) {
+        this.treshholdService = treshholdService;
+    }
+    @Autowired
+    private final TreshholdService treshholdService;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/all")
-    @ResponseBody
-    public List<Treshhold> getAll() {
-        return treshholdService.getAll();
+    @GetMapping()
+    public ResponseEntity<List<Treshhold>> getAll() {
+        List<Treshhold> dtos = treshholdService.getAll();
+        return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
 
-
-    @GetMapping(value = "/{device}")
+    @GetMapping(value = "/findByDevice/{device}")
     public ResponseEntity<Treshhold> getTreshholdByDevice(@PathVariable("device") Integer device) {
-        //System.out.println(device);
         Treshhold dtos = treshholdService.findThreshholdByIdDevice(device);
         return new ResponseEntity<>(dtos, HttpStatus.OK);
     }
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<String> deleteTreshhold(@PathVariable("id") Integer idTreshhold) {
         treshholdService.deleteTreshhold(idTreshhold);
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
 
-    @PutMapping(value = "/{id}")
+    @DeleteMapping(value = "/deleteByDevice/{id}")
+    public ResponseEntity<String> deleteTreshholdByDevice(@PathVariable("id") Integer id) {
+        Treshhold dtos = treshholdService.findThreshholdByIdDevice(id);
+        treshholdService.deleteTreshhold(dtos.getIdDevice());
+        return new ResponseEntity<>("Success delete", HttpStatus.OK);
+    }
+
+    @PutMapping(value = "/update/{id}")
     public ResponseEntity<String> updateTreshhold(@Valid @RequestBody Treshhold treshholdDTO) {
         treshholdService.update(treshholdDTO);
+        return new ResponseEntity<>("Success Update", HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/insert/{device}/{treshhold:.+}")
+    public ResponseEntity<Integer> insertTreshhold(@PathVariable("device") Integer device, @PathVariable Double treshhold) {
+        Treshhold t= new Treshhold();
+        t.setCurrent(0.0);
+        t.setTreshhold(treshhold);
+        t.setIdDevice(device);
+        Integer idTreshhold = treshholdService.insert(t);
+        return new ResponseEntity<>(idTreshhold, HttpStatus.CREATED);
+    }
+
+    @PutMapping(value = "/update/{device}/{treshhold}")
+    public ResponseEntity<String> updateTreshhold(@PathVariable("device") Integer device, @PathVariable Double treshhold) {
+        Treshhold oldt = treshholdService.findThreshholdByIdDevice(device);
+        oldt.setTreshhold(treshhold);
+        treshholdService.update(oldt);
         return new ResponseEntity<>("Success Update", HttpStatus.OK);
     }
 }

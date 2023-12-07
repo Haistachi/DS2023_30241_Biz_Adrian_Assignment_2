@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,9 @@ public class MeasurementService {
     }
 
     public List<Measurement> findMeasurementsByIdDeviceAndTimest(Integer id, LocalDateTime time){
-        return iMeasurementRepository.findMeasurementByIdDeviceAndTimest(id, time);
+        LocalDateTime preTime = time.toLocalDate().atTime(LocalTime.MIN);
+        LocalDateTime postTime = time.toLocalDate().atTime(LocalTime.MAX);
+        return iMeasurementRepository.findByIdDeviceAndTimestBetween(id, preTime, postTime);
     }
 
     public void deleteMeasurement(Integer id) {

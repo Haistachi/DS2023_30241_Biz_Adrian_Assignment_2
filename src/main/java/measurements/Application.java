@@ -14,12 +14,14 @@ import measurements.services.MeasurementService;
 import measurements.websocket.WebSocketController;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class Application extends SpringBootServletInitializer {
     public static double prevVal=0;
+    public static LocalDateTime todayTime=LocalDateTime.now();
     public static LocalDateTime preTime = LocalDateTime.of(2023, 01,17, 0,0,0);;
     public static LocalDateTime postTime = LocalDateTime.of(2023, 01,18, 1,0,0);;
     public static void main(String[] args)  {
@@ -44,21 +46,25 @@ public class Application extends SpringBootServletInitializer {
         m.setTimest(prototipe.getTimest());
         System.out.println(m.toString());
 
-        measurementService.insert(m);
+        measurementService.saveMeasurement(m);
 
         // ti o lista cu rezultatul de la getAllMeasurementsByDeviceId
         // filtrezi pe ultima ora
         //parcurgi lista faci suma
+        preTime=todayTime.toLocalDate().atTime(LocalTime.MIN);
+        postTime=todayTime.toLocalDate().atTime(LocalTime.MAX);
         Treshhold t= treshholdService.findThreshholdByIdDevice(m.getIdDevice());
         List<Measurement> lMeasurement=  measurementService.findMeasurementsByIdDevice(m.getIdDevice());
         List<Measurement> lTodayMeasurements = lMeasurement.stream()
                 .filter( l -> l.getTimest().isAfter(preTime) && l.getTimest().isBefore(postTime))
                 .collect(Collectors.toList());
         double sum= 0;
-        for(int i=0; i<lTodayMeasurements.size();i++)
+        double dif= lTodayMeasurements.get(0).getVal();
+        for(int i=1; i<lTodayMeasurements.size();i++)
         {
-            sum+=lTodayMeasurements.get(i).getVal()-prevVal;
-            prevVal=lTodayMeasurements.get(i).getVal();
+            dif=dif-lTodayMeasurements.get(i).getVal();
+            sum+=-dif;
+            dif=lTodayMeasurements.get(i).getVal();
         }
         t.setCurrent(sum);
         treshholdService.update(t);
