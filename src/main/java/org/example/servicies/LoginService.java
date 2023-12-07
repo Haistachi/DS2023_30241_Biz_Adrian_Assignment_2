@@ -19,7 +19,14 @@ public class LoginService {
     public String log(PersonDTO person)
     {
         Optional<Person> prosumerOptional = personRepository.findByUsername(person.getUsername());
-        LOGGER.debug("Person with name {} has loggedIn", person.getUsername());
-        return prosumerOptional.map(value -> value.getRole().toString()).orElse(null);
+        if(person.getUserPassword().equals(prosumerOptional.get().getUserPassword())) {
+            LOGGER.debug("Person with name {} has loggedIn", person.getUsername());
+            return prosumerOptional.map(value -> value.getRole().toString()).orElse(null);
+        }
+        else
+        {
+            LOGGER.debug("Incorect Password {} for {}", person.getUserPassword(), person.getUsername());
+            return null;
+        }
     }
 }
