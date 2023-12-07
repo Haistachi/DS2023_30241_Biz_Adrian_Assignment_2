@@ -9,14 +9,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.time.OffsetTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
+import static java.time.LocalTime.MIN;
+
 public class Send {
 
     private final static String QUEUE_NAME = "demoqueue";
-    public static LocalDateTime time=LocalDateTime.of(2023, 01,17, 1,0,0);
+    public static LocalDateTime time=LocalDateTime.now().toLocalDate().atTime(MIN);
     public static ArrayList<Double> senzor;
 
     public static void readFile() throws FileNotFoundException {
@@ -67,7 +70,7 @@ public class Send {
                 În acest exemplu, se trimite un mesaj JSON, iar conținutul acestuia este convertit în bytes folosind codificarea UTF-8.*/
                 channel.basicPublish("", QUEUE_NAME, null, json.getBytes(StandardCharsets.UTF_8));
                 try {
-                    Thread.sleep(20000);  // pauza
+                    Thread.sleep(10000);  // pauza
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
