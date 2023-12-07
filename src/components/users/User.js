@@ -59,10 +59,11 @@ function User(props)
     }
     function statistic()
     {
+        console.log(calendarDate.toISOString().split(".")[0]);
         findDeviceActive(idDevice, calendarDate,(res, stat, err)=>{if(err) console.log(err);
         else {console.log(res);
-            console.log(res.map((active) => active.consumption));
-            setChartData(res.map((active) => active.consumption));
+            console.log(res.map((measurement) => measurement.val));
+            setChartData(res.map((measurement) => measurement.val));
         }});
         setActiveChart(true);
     }

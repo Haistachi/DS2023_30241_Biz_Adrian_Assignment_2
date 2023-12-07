@@ -2,7 +2,7 @@ function showError(message) {console.log(message);}
 
 function getActives(callback)
 {
-    fetch("http://localhost:8082/active", {
+    fetch("http://localhost:8083/measurement", {
         headers: {
             "Content-Type": "application/json"},
         method: "get",
@@ -35,7 +35,7 @@ function findDevicesByOwner(owner, callback)
 
 function findDeviceActive(idDevice, date, callback)
 {
-    fetch("http://localhost:8082/active/" + idDevice + "/" + date.toISOString().split("T")[0], {
+    fetch("http://localhost:8083/measurement/findByDeviceAndDate/" + idDevice + "/" + date.toISOString().split(".")[0], {
         headers: {
             "Content-Type": "application/json"},
         method: "get",

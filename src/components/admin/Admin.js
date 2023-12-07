@@ -7,8 +7,13 @@ import {
     getDevices,
     getPersons,
     insertDevice,
-    insertPerson, updateDevice,
-    updatePerson
+    insertPerson, 
+    updateDevice,
+    updatePerson,
+    updateTreshhold,
+    insertTreshhold,
+    deleteTreshhold,
+    deleteActive
 } from "./admin-api";
 function Admin()
 {
@@ -99,20 +104,41 @@ function Admin()
     }
     function createDevice(){
         console.log(owner, desc, addr, consume);
+        let newDevice=0;
         if(persons.find(obj => {return obj.id==owner;})) {
             insertDevice({owner, desc, addr, consume}, (res, stat, err) => {
                 if (err) console.log(err);
+                console.log(res);
+                newDevice=res;
+                localStorage.setItem("idDev", res);
+                finsertTreshhold(localStorage.getItem("idDev"), consume);
             })
             getDevices((res, stat, err) => {
                 if (err) console.log(err);
                 else
+                {
                     setDevices(res);
+                }
             });} else
             console.log(`User cu id-ul ${owner} nu exista!`);
+    }
+    function finsertTreshhold(idDevice, consume){
+        console.log(idDevice, consume);
+        insertTreshhold({idDevice, consume}, (res, stat, err)=>{if(err) console.log(err);})
+    }
+    function fupdateTreshhold(idDevice, consume){
+        console.log(idDevice, consume);
+        updateTreshhold({idDevice, consume}, (res, stat, err)=>{if(err) console.log(err);})
+    }
+    function fdeleteTreshhold(idDevice){
+        console.log(idDevice);
+        deleteTreshhold({idDevice}, (res, stat, err)=>{if(err) console.log(err);})
     }
     function deleteDeviceB(){
         console.log(idDevice);
         deleteDevice(idDevice, (res, stat, err)=>{if(err) console.log(err);});
+        fdeleteTreshhold(idDevice);
+        deleteActiveDevice(idDevice);
         getDevices((res, stat, err)=>{if(err) console.log(err);
         else
             setDevices(res);
@@ -121,10 +147,21 @@ function Admin()
     function deleteDeviceById(id){
         console.log(id);
         deleteDevice(id, (res, stat, err)=>{if(err) console.log(err);});
+        fdeleteTreshhold(idDevice);
+        deleteActiveDevice(id);
         getDevices((res, stat, err)=>{if(err) console.log(err);
         else {
             console.log(res);
             setDevices(res);
+        }
+        });
+    }
+    function deleteActiveDevice(id){
+        console.log(id);
+        deleteActive(id, (res, stat, err)=>{if(err) console.log(err);});
+        getDevices((res, stat, err)=>{if(err) console.log(err);
+        else {
+            console.log(res);
         }
         });
     }
@@ -134,9 +171,12 @@ function Admin()
         if(persons.find(obj => {return obj.id==owner;})) {
         updateDevice({id: idDevice, person: owner, description: desc, address: addr, consumption: consume},
             (res, stat, err)=>{if(err) console.log(err);});
+        fupdateTreshhold(idDevice, consume);
         getDevices((res, stat, err)=>{if(err) console.log(err);
         else
+        {
             setDevices(res);
+        }
         });} else
             console.log(`User cu id-ul ${owner} nu exista!`);
     }

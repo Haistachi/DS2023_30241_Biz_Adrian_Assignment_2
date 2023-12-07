@@ -138,6 +138,75 @@ function updateDevice(device, callback)
     });
 }
 
+function updateTreshhold(device, treshhold, callback)
+{
+    fetch("http://localhost:8083/treshhold/update/" + device +"/"+ treshhold, {
+        headers: {
+            "Content-Type": "application/json"},
+        method: "put",
+    })
+        .then((response) => {
+            if (response.status === 200) return response.text();
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin updateTreshhold fail");
+        callback(null, response.status, response);
+    });
+}
+
+function insertTreshhold(device, treshhold, callback)
+{
+    fetch("http://localhost:8083/treshhold/insert/" + device + "/" + treshhold, {
+        headers: {
+            "Content-Type": "application/json"},
+        method: "post",
+        body: JSON.stringify({"device" : device, "treshhold": treshhold})
+    })
+        .then((response) => {
+            if (response.status === 201) return response.text();
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin insert Treshhold fail");
+        callback(null, response.status, response);
+    });
+}
+
+function deleteTreshhold(device, callback)
+{
+    fetch("http://localhost:8083/treshhold/deleteByDevice/" + device, {
+        headers: {
+            "Content-Type": "application/json"},
+        method: "delete",
+})
+.then((response) => {
+    if (response.status === 201) return response.text();
+}).then((response) => {
+    callback(response, response.status, null);
+}).catch((response)=>{
+    showError("Admin delete Treshhold fail");
+    callback(null, response.status, response);
+});
+}
+
+function deleteActive(device, callback)
+{
+    fetch("http://localhost:8083/delete/findByDevice/" + device, {
+        headers: {
+            "Content-Type": "application/json"},
+        method: "delete",
+    })
+        .then((response) => {
+            if (response.status === 201) return response.text();
+        }).then((response) => {
+        callback(response, response.status, null);
+    }).catch((response)=>{
+        showError("Admin delete Measurement fail");
+        callback(null, response.status, response);
+    });
+}
+
 export {
     getDevices,
     insertDevice,
@@ -146,5 +215,9 @@ export {
     getPersons,
     deleteDevice,
     updatePerson,
-    updateDevice
+    updateDevice,
+    updateTreshhold,
+    insertTreshhold,
+    deleteTreshhold,
+    deleteActive
 };
