@@ -26,12 +26,15 @@ public class TreshholdService {
     }
 
     public Treshhold findThreshholdByIdDevice(Integer id) {
-        Optional<Treshhold> treshholdOptional = iTreshholdRepository.findById(id);
-        if (!treshholdOptional.isPresent()) {
+
+        List<Treshhold> treshholdOptional = iTreshholdRepository.findByIdDevice(id);
+        //System.out.println(treshholdOptional);
+        if (treshholdOptional.isEmpty()) {
             LOGGER.error("Treshhold with IdDevice id {} was not found in db", id);
+            return null;
         }
-        return new Treshhold(treshholdOptional.get().getIdTreshhold(), treshholdOptional.get().getIdDevice(),
-                treshholdOptional.get().getTreshhold(), treshholdOptional.get().getCurrent());
+        //System.out.println(treshholdOptional.get(0));
+        return treshholdOptional.get(0);
     }
 
     public Double getThreshholdForDevice(Integer id)

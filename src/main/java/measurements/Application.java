@@ -37,6 +37,7 @@ public class Application extends SpringBootServletInitializer {
     TreshholdService treshholdService;
     @RabbitListener(queues = "demoqueue")
     public void run(String msg1) throws Exception {
+        System.out.println(msg1);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         Measurement prototipe = objectMapper.readValue(msg1, Measurement.class);

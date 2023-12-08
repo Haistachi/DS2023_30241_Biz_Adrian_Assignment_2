@@ -36,7 +36,13 @@ public class MeasurementService {
         return iMeasurementRepository.findAll();
     }
     public List<Measurement> findMeasurementsByIdDevice(Integer id){
-        return iMeasurementRepository.findByIdDevice(id);
+        List<Measurement> lm= iMeasurementRepository.findByIdDevice(id);
+        if(lm.isEmpty())
+        {
+            LOGGER.debug("Device with id {} dosen't have measurement", id);
+            return null;
+        }
+        return lm;
     }
 
     public List<Measurement> findMeasurementsById(Integer id){

@@ -45,7 +45,8 @@ public class TreshholdController {
     @DeleteMapping(value = "/deleteByDevice/{id}")
     public ResponseEntity<String> deleteTreshholdByDevice(@PathVariable("id") Integer id) {
         Treshhold dtos = treshholdService.findThreshholdByIdDevice(id);
-        treshholdService.deleteTreshhold(dtos.getIdDevice());
+        System.out.println(dtos);
+        treshholdService.deleteTreshhold(dtos.getIdTreshhold());
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
     }
 
@@ -55,7 +56,7 @@ public class TreshholdController {
         return new ResponseEntity<>("Success Update", HttpStatus.OK);
     }
 
-    @PostMapping(value = "/insert/{device}/{treshhold:.+}")
+    @PostMapping(value = "/insert/{device}/{treshhold}")
     public ResponseEntity<Integer> insertTreshhold(@PathVariable("device") Integer device, @PathVariable Double treshhold) {
         Treshhold t= new Treshhold();
         t.setCurrent(0.0);

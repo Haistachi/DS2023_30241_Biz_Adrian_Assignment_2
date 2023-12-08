@@ -13,6 +13,7 @@ import measurements.services.MeasurementService;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -58,7 +59,7 @@ public class MeasurementController {
 
     @DeleteMapping(value = "/delete/findByDevice/{id}")
     public ResponseEntity<String> deleteMeasurementDevice(@PathVariable("id") Integer id) {
-        List<Measurement> dtos = measurementService.findMeasurementsByIdDevice(id);
+        ArrayList<Measurement> dtos =new ArrayList<Measurement>( measurementService.findMeasurementsByIdDevice(id));
         for( Measurement m : dtos)
         {measurementService.deleteMeasurement(m.getIdMeasurement());}
         return new ResponseEntity<>("Success delete", HttpStatus.OK);
