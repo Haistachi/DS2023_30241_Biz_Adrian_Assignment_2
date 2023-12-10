@@ -124,15 +124,15 @@ function Admin()
     }
     function finsertTreshhold(idDevice, consume){
         console.log(idDevice, consume);
-        insertTreshhold({idDevice, consume}, (res, stat, err)=>{if(err) console.log(err);})
+        insertTreshhold(idDevice, consume, (res, stat, err)=>{if(err) console.log(err);});
     }
     function fupdateTreshhold(idDevice, consume){
         console.log(idDevice, consume);
-        updateTreshhold({idDevice, consume}, (res, stat, err)=>{if(err) console.log(err);})
+        updateTreshhold(idDevice, consume, (res, stat, err)=>{if(err) console.log(err);});
     }
     function fdeleteTreshhold(idDevice){
         console.log(idDevice);
-        deleteTreshhold({idDevice}, (res, stat, err)=>{if(err) console.log(err);})
+        deleteTreshhold(idDevice, (res, stat, err)=>{if(err) console.log(err);});
     }
     function deleteDeviceB(){
         console.log(idDevice);
@@ -147,7 +147,7 @@ function Admin()
     function deleteDeviceById(id){
         console.log(id);
         deleteDevice(id, (res, stat, err)=>{if(err) console.log(err);});
-        fdeleteTreshhold(idDevice);
+        fdeleteTreshhold(id);
         deleteActiveDevice(id);
         getDevices((res, stat, err)=>{if(err) console.log(err);
         else {
@@ -159,11 +159,6 @@ function Admin()
     function deleteActiveDevice(id){
         console.log(id);
         deleteActive(id, (res, stat, err)=>{if(err) console.log(err);});
-        getDevices((res, stat, err)=>{if(err) console.log(err);
-        else {
-            console.log(res);
-        }
-        });
     }
     function updateDeviceB(){
         console.log(idDevice);

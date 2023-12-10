@@ -157,11 +157,11 @@ function updateTreshhold(device, treshhold, callback)
 
 function insertTreshhold(device, treshhold, callback)
 {
+    console.log("aici in functie: "+ device+" -- "+ treshhold)
     fetch("http://localhost:8083/treshhold/insert/" + device + "/" + treshhold, {
         headers: {
             "Content-Type": "application/json"},
-        method: "post",
-        body: JSON.stringify({"device" : device, "treshhold": treshhold})
+        method: "post"
     })
         .then((response) => {
             if (response.status === 201) return response.text();
@@ -181,7 +181,7 @@ function deleteTreshhold(device, callback)
         method: "delete",
 })
 .then((response) => {
-    if (response.status === 201) return response.text();
+    if (response.status === 200) return response.text();
 }).then((response) => {
     callback(response, response.status, null);
 }).catch((response)=>{
@@ -192,13 +192,14 @@ function deleteTreshhold(device, callback)
 
 function deleteActive(device, callback)
 {
-    fetch("http://localhost:8083/delete/findByDevice/" + device, {
+    console.log(device);
+    fetch("http://localhost:8083/measurement/delete/findByDevice/" + device, {
         headers: {
             "Content-Type": "application/json"},
-        method: "delete",
+        method: "delete"
     })
         .then((response) => {
-            if (response.status === 201) return response.text();
+            if (response.status === 200) return response.text();
         }).then((response) => {
         callback(response, response.status, null);
     }).catch((response)=>{

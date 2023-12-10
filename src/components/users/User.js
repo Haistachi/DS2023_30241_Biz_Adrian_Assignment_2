@@ -1,9 +1,12 @@
+import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import table from "../../commons/tables/table";
 import Calendar from "./Calendar";
 import {findDeviceActive, findDevicesByOwner, findPersonIdByName, getActives} from "./user-api";
 import Active from "./Active";
+import SockJsClient from 'react-stomp';
+import Card from 'react-bootstrap/Card';
 
 function User(props)
 {
@@ -20,6 +23,10 @@ function User(props)
     const onBackDevice=()=>{setPageDevice(pageDevice -1 >-1 ? pageDevice-1:pageDevice)}
     const onNextDevice=()=>{setPageDevice(pageDevice +1 < devices.length/10 ? pageDevice+1:pageDevice)}
 
+    const [isMsg, setIsMsg] = useState(false);
+    const [message, setMessage] = useState('');
+    const [topics, setTopics] = useState([]);
+    
     var tableDevice = document.getElementById("DeviceTable");
     if (tableDevice) {
         for (var i = 0; i < tableDevice.rows.length; i++) {
@@ -88,6 +95,22 @@ function User(props)
             }});
         }, [])
 
+    let onConnected = () => {
+        console.log("Connected!!")
+        setTopics(['/topic/message']);
+    }
+
+    let onDisconnect = () => {
+        console.log("DISConnected!!")
+    }
+
+    let onMessageReceived = (msg) => {
+        setMessage(msg)
+        setIsMsg(true)
+
+        //setTimeout
+    }
+
     return(<div><h1>Bine ai venit user {props.name}</h1>
         <div>
             <div className="Button" >{<Calendar date={calendarDate} setDate={setCalendarDate}/>}
@@ -121,6 +144,19 @@ function User(props)
                 </div></div>}
             <div className="Button"><button onClick={delog}>Delog</button></div>
         </div>
+        
+        <SockJsClient
+            url={'http://localhost:8083/ws-message'}
+            topics={topics}
+            onConnect={onConnected}
+            onDisconnect={onDisconnect}
+            onMessage={msg => onMessageReceived(msg)}
+            debug={false}
+        />
+        { isMsg && < Card bg='danger' style={{ width: '20rem',marginLeft:'40%',alignContent:'center' }}>
+            <div>
+                <Card.Text style={{textAlign:"center",padding:"20px"}} >{message}</Card.Text>
+            </div></Card>}
     </div>);
 }
 
