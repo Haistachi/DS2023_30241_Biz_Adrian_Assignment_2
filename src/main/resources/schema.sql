@@ -23,5 +23,5 @@ CREATE TABLE IF NOT EXISTS public.treshhold (
                                 id_device integer,
                                 treshhold double precision
 );
-SELECT setval(PG_GET_SERIAL_SEQUENCE('"treshhold"', 'id_treshhold'), 1);
+SELECT setval(PG_GET_SERIAL_SEQUENCE('"treshhold"', 'id_treshhold'), 2);
 ALTER TABLE IF EXISTS public.treshhold OWNER TO postgres;

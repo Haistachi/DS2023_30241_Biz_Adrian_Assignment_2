@@ -1,5 +1,6 @@
 insert into treshhold (id_treshhold, "current", id_device, treshhold)
-values (1, 0, 1, 50)
+values (1, 0, 1, 100),
+       (2, 0, 2, 50)
     ON CONFLICT (id_treshhold)
 DO NOTHING;
 

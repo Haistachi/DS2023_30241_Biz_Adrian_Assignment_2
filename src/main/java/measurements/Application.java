@@ -71,9 +71,11 @@ public class Application extends SpringBootServletInitializer {
         treshholdService.update(t);
         if(sum>t.getTreshhold())
         {
-            System.out.println("nasol bre");
+            System.out.println("Sa depasit bugetul, bre!");
             webSocketTextController.sendMessage("S-a depasit bugetu pentru device-ul cu id-ul "
                     + m.getIdDevice() + ". La ora: " + m.getTimest().toString());
+        }else {
+            System.out.println("In buget");
         }
     }
 }
