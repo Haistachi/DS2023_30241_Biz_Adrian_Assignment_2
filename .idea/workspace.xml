@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f1b379a-faad-465a-8fb9-47f47521439f" name="Changes" comment="comit">
+    <list default="true" id="1f1b379a-faad-465a-8fb9-47f47521439f" name="Changes" comment="problema">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Send.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Send.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Send.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Send.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,19 +33,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Adi/Faculta/An4Cont/SD/Proiect1/persoane-be&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "E:/Adi/Faculta/An4Cont/SD/Proiect2/DS2023_30142_Biz_Adrian_2_Reader",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="" />
@@ -128,7 +126,12 @@
       <workItem from="1701097063396" duration="2897000" />
       <workItem from="1701550237023" duration="2092000" />
       <workItem from="1701884573395" duration="1479000" />
-      <workItem from="1701964304520" duration="684000" />
+      <workItem from="1701964304520" duration="716000" />
+      <workItem from="1702027710660" duration="1869000" />
+      <workItem from="1702034866519" duration="68000" />
+      <workItem from="1702152630119" duration="605000" />
+      <workItem from="1702241743413" duration="24000" />
+      <workItem from="1702241883967" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1701084119430</created>
@@ -137,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701084119430</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="problema">
+      <created>1701978249479</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1701978249479</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +166,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="comit" />
-    <option name="LAST_COMMIT_MESSAGE" value="comit" />
+    <MESSAGE value="problema" />
+    <option name="LAST_COMMIT_MESSAGE" value="problema" />
   </component>
 </project>
