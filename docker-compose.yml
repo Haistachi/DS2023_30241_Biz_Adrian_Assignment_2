@@ -6,7 +6,7 @@ services:
     ports:
       - "8081:8081"
     build:
-      context: persoane-be
+      context: persoane_back-end
       dockerfile: Dockerfile
     container_name: app-persoane
     depends_on:
@@ -23,7 +23,7 @@ services:
     ports:
       - "8082:8082"
     build:
-      context: devices-be
+      context: device_back-end
       dockerfile: Dockerfile
     container_name: app-device
     depends_on:
@@ -40,14 +40,14 @@ services:
     ports:
       - "8083:8083"
     build:
-      context: measurements-be
+      context: measurements-end
       dockerfile: Dockerfile
     container_name: app-measurements
     depends_on:
       - db-measurements
 
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-measurements:5434/active
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db-measurements:5432/active
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=A.Hunu2000
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
@@ -57,7 +57,7 @@ services:
     ports:
       - "3000:3000"
     build:
-      context: asigment1_front-end
+      context: interface_front-end
       dockerfile: Dockerfile
     container_name: frontend
 
