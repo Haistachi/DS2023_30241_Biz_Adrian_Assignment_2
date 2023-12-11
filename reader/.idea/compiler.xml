@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="reader" />
         <module name="CSV_Reader" />
         <module name="DS2023_30142_Biz_Adrian_2_Reader" />
       </profile>

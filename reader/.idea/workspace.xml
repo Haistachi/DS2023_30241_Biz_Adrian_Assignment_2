@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f1b379a-faad-465a-8fb9-47f47521439f" name="Changes" comment="problema">
+      <change beforePath="$PROJECT_DIR$/../interface_front-end/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../interface_front-end/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -13,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="JpbToolWindowState">
     <option name="isToolWindowVisible" value="false" />
@@ -29,6 +32,7 @@
     </option>
   </component>
   <component name="ProjectId" id="2Y7zY7fUxQTeRGj5Ti845ZXXoM1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -39,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "E:/Adi/Faculta/An4Cont/SD/Proiect2/DS2023_30142_Biz_Adrian_2_Reader",
+    "last_opened_file_path": "E:/Adi/Faculta/An4Cont/SD/DS2023_30241_Biz_Adrian_Assignment_2",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
@@ -132,6 +136,8 @@
       <workItem from="1702152630119" duration="605000" />
       <workItem from="1702241743413" duration="24000" />
       <workItem from="1702241883967" duration="77000" />
+      <workItem from="1702301294730" duration="722000" />
+      <workItem from="1702306731249" duration="53000" />
     </task>
     <task id="LOCAL-00001" summary="comit">
       <created>1701084119430</created>
