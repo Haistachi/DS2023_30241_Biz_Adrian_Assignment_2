@@ -19,7 +19,7 @@ import org.springframework.web.socket.WebSocketMessage;
 
         @PostMapping("/send")
         public ResponseEntity<Void> sendMessage(@RequestBody String textMessageDTO) {
-            template.convertAndSend("/topic/message", textMessageDTO);
+            template.convertAndSend("/topic/measurements", textMessageDTO);
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }

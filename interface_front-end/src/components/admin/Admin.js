@@ -31,6 +31,7 @@ function Admin()
     const [desc, setDesc] = useState("");
     const [addr, setAddr] = useState("");
     const [consume, setConsume] = useState("");
+    const [chatPersons, setChatPersons] = useState([]);
 
     var tableUser = document.getElementById("UserTable");
     if (tableUser) {
@@ -56,6 +57,7 @@ function Admin()
         var pass = tableRow.childNodes[2].innerHTML;
         var rol = tableRow.childNodes[3].innerHTML;
         var obj = {'Id': id, 'User': user, 'Pass': pass, 'Rol': rol};
+        localStorage.setItem("ChatUser", [id, user, pass, rol]);
         console.log(obj);
     }
     function deviceTableText(tableRow) {
@@ -178,6 +180,23 @@ function Admin()
     function addOwner() {setOwner(idPerson);}
     function showError(message) {console.log(message); return(navigate("/error"));}
     function delog() { localStorage.clear(); return(navigate("/"));}
+    function chat() {
+        localStorage.setItem( "ChatList", JSON.stringify(chatPersons));
+        console.log(chatPersons);
+        return(navigate("/chatroom"));
+    }
+    function addToChat() {
+        let list= Array.from(new Set(chatPersons));
+        list.push(localStorage.getItem("ChatUser"));
+        console.log(list);
+        setChatPersons(list);
+    }
+    function removeFromChat() {
+        const id = localStorage.getItem("ChatUser").at(0);
+        const newList = chatPersons.filter((item) => item.at(0) !== id);
+        console.log(newList);
+        setChatPersons(newList);
+    }
     const onBackPersons=()=>{setPagePersons(pagePersons -1 >-1 ? pagePersons-1:pagePersons)}
     const onNextPersons=()=>{setPagePersons(pagePersons +1 < persons.length/10 ? pagePersons+1:pagePersons)}
     const onBackDevice=()=>{setPageDevice(pageDevice -1 >-1 ? pageDevice-1:pageDevice)}
@@ -209,6 +228,8 @@ function Admin()
             <div className="Button" ><button onClick={createUser}>Create</button></div>
             <div className="Button" ><button onClick={deleteUser}>Delete</button></div>
             <div className="Button" ><button onClick={updateUser}>Update</button></div>
+            <div className="Button"><button onClick={addToChat}>Add To Chat</button></div>
+            <div className="Button"><button onClick={removeFromChat}>Remove From Chat</button></div>
         </div>
         {persons && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>
             <table cellSpacing={"0"}
@@ -232,6 +253,7 @@ function Admin()
                     <label style={{padding: "0 lem"}}>{pagePersons+1}</label>
                     <button onClick={onNextPersons}>Next</button>
                 </div>
+            <div><button onClick={chat}>ChatRoom</button></div>
         </div>}
 
         <div>
