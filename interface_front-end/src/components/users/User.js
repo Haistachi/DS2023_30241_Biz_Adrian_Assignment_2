@@ -98,7 +98,9 @@ function User(props)
 
     let onConnected = () => {
         console.log("Connected!!")
+
         setTopics(['/topic/measurements']);
+
     }
 
     let onDisconnect = () => {
