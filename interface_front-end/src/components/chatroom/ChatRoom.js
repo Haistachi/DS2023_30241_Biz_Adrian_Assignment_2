@@ -41,6 +41,11 @@ function ChatRoom()
         setMessageInput(e.target.value);
     };
 
+    function Reconect()
+    {
+        setTopics(['/topic/messages'])
+        console.log("Connected!!")
+    }
     function Back()
     {
         localStorage.setItem('ChatList',[]);
@@ -81,7 +86,8 @@ function ChatRoom()
     // cand primim mesaj, pe langa cele pe care le avem deja vrem sa le pastram
     //de asta punem cu .. inainte, asta inseamna ca la array-ul de mesaje deja existent, mai adaugam pe cel pe care l-am primit
     const onMessageReceived = (msg) => {
-        console.log("message recived: " + msg);
+        console.log("message recived: ");
+        console.log(msg);
         setMessages([...messages, msg]);
     };
 
@@ -99,7 +105,7 @@ function ChatRoom()
                         key={index}
                         className={`message ${msg.sender === username ? 'sender-me' : 'sender-other'}`} //aici am vrut sa fiu smechera sa pun clase diferite pt mesajele mele vs cele primite
                     >
-                        {msg.sender}: {msg.content}
+                        {msg.time + " " + msg.sender}: {msg.content}
                     </div>
                     //aici pot accesa senderu si contetu, ca mi le-am definit asa in java, voi afisati cum vreti
                 ))}
@@ -115,6 +121,7 @@ function ChatRoom()
                 />
             </Form>
             <Button style={{marginTop:"5px"}} variant='dark' onClick={handleSendMessage}>Send</Button>
+            <Button style={{marginTop:"5px"}} variant='dark' onClick={Reconect}>Reconect</Button>
             <Button style={{marginTop:"5px"}} variant='dark' onClick={Back}>Back</Button>
             <SockJsClient
                 url="http://localhost:8084/ws"

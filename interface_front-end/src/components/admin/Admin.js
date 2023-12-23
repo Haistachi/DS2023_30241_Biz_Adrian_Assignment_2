@@ -32,6 +32,8 @@ function Admin()
     const [addr, setAddr] = useState("");
     const [consume, setConsume] = useState("");
     const [chatPersons, setChatPersons] = useState([]);
+    const [pageChat, setPageChat]= useState(0);
+    const [chatPerson, setChatPerson] = useState("");
 
     var tableUser = document.getElementById("UserTable");
     if (tableUser) {
@@ -57,6 +59,9 @@ function Admin()
         var pass = tableRow.childNodes[2].innerHTML;
         var rol = tableRow.childNodes[3].innerHTML;
         var obj = {'Id': id, 'User': user, 'Pass': pass, 'Rol': rol};
+        for(i=0;i<persons.length;i++)
+        {if(persons.at(i).id==id) setChatPerson(persons.at(i));}
+        //console.log(chatPerson);
         localStorage.setItem("ChatUser", [id, user, pass, rol]);
         console.log(obj);
     }
@@ -186,21 +191,27 @@ function Admin()
         return(navigate("/chatroom"));
     }
     function addToChat() {
-        let list= Array.from(new Set(chatPersons));
-        list.push(localStorage.getItem("ChatUser"));
-        console.log(list);
-        setChatPersons(list);
+        console.log(chatPerson);
+        const arr= Array.from(new Set(chatPersons));
+        arr.push(chatPerson);
+        arr.sort((a,b)=> (a.id > b.id ? 1 : -1));
+        setChatPersons(arr);
     }
     function removeFromChat() {
-        const id = localStorage.getItem("ChatUser").at(0);
-        const newList = chatPersons.filter((item) => item.at(0) !== id);
-        console.log(newList);
-        setChatPersons(newList);
+        const id = chatPerson.id;
+        const newList = chatPersons.filter((item) => item.id !== id);
+        const filteredArr = newList.filter((item, index) => {
+            return newList.indexOf(item) === index;});
+        if(setChatPersons(filteredArr))
+            console.log(filteredArr);
+
     }
     const onBackPersons=()=>{setPagePersons(pagePersons -1 >-1 ? pagePersons-1:pagePersons)}
     const onNextPersons=()=>{setPagePersons(pagePersons +1 < persons.length/10 ? pagePersons+1:pagePersons)}
     const onBackDevice=()=>{setPageDevice(pageDevice -1 >-1 ? pageDevice-1:pageDevice)}
     const onNextDevice=()=>{setPageDevice(pageDevice +1 < devices.length/10 ? pageDevice+1:pageDevice)}
+    const onBackChat=()=>{setPageChat(pageChat -1 >-1 ? pageChat-1:pageChat)}
+    const onNextChat=()=>{setPageChat(pageChat +1 < chatPersons.length/10 ? pageChat+1:pageChat)}
      useEffect(
         ()=>{
             if(localStorage.getItem("rol") !== "admin")
@@ -299,6 +310,37 @@ function Admin()
                     <label style={{padding: "0 lem"}}>{pageDevice+1}</label>
                     <button onClick={onNextDevice}>Next</button>
                 </div>
+        </div>}
+
+        <div>
+            <h2>ChatList</h2>
+            <div className="Button"><button onClick={addToChat}>Add To Chat</button></div>
+            <div className="Button"><button onClick={removeFromChat}>Remove From Chat</button></div>
+            <div className="Button"><button onClick={chat}>ChatRoom</button></div>
+        </div>
+        {persons && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>
+            <table cellSpacing={"0"}
+                   style={{width: "100%", height: "auto", padding: "5px 10 px"}} id={"UserTable"}>
+                <thead><tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Pass</th>
+                    <th>Rol</th>
+                </tr></thead>
+                <tbody>{chatPersons.slice(10 * pageChat, 10*pageChat+10).map((person)=>
+                {return(<tr key={person.id} onClick={()=>setIdPerson(person.id)}>
+                    <td>{person.id}</td>
+                    <td>{person.username}</td>
+                    <td>{person.userPassword}</td>
+                    <td>{person.rol}</td>
+                </tr>)})}
+                </tbody>
+            </table>
+            <div style={{padding: "10px 0"}}>
+                <button onClick={onBackChat}>Back</button>
+                <label style={{padding: "0 lem"}}>{pageChat+1}</label>
+                <button onClick={onNextChat}>Next</button>
+            </div>
         </div>}
         <div className="Button" ><button onClick={delog}>Delog</button></div>
     </div>);

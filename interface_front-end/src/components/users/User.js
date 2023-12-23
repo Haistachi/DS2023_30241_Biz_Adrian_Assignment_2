@@ -98,9 +98,7 @@ function User(props)
 
     let onConnected = () => {
         console.log("Connected!!")
-
         setTopics(['/topic/measurements']);
-
     }
 
     let onDisconnect = () => {
@@ -110,7 +108,6 @@ function User(props)
     let onMessageReceived = (msg) => {
         setMessage(msg)
         setIsMsg(true)
-
         //setTimeout
     }
 
