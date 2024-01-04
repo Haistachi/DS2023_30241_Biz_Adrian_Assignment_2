@@ -11,6 +11,7 @@ function ChatRoom()
     const [messageInput, setMessageInput] = useState('');
     const [username, setUsername] = useState('');
     const [topics, setTopics] = useState([]);
+    const [contacte, setContacte] = useState([]);
     const rol = localStorage.getItem('rol');
 
     // ca sa putem trimite mesaje, trebe sa facem o referinta catre obiectul de client socket, pe care o initializam cu null la inceput
@@ -20,12 +21,25 @@ function ChatRoom()
     //care poate fi utilizată pentru a accesa și manipula acest element sau obiect.
     const clientRef = useRef(null);
 
+    function fSetTopic()
+    {
+        if(rol === "admin") {
+            setTopics(['/topic/messages'])
+        }
+        else
+        {
+            setTopics(['/topic/messages'])
+        }
+        console.log("Connected!!")
+    }
+
     useEffect(() => {
         // Utilizarea useEffect pentru a seta username-ul când componenta este randata
         setUsername(localStorage.getItem('user') + "-" + localStorage.getItem('rol'));
         if (rol === "admin") {
             let listContacte = JSON.parse(localStorage.getItem("ChatList"));
             console.log(listContacte);
+            setContacte(listContacte);
         }
 
         // Funcția returnată va fi apelată când componenta este dezactivată, inchidem conexiunea
@@ -43,8 +57,7 @@ function ChatRoom()
 
     function Reconect()
     {
-        setTopics(['/topic/messages'])
-        console.log("Connected!!")
+        fSetTopic();
     }
     function Back()
     {
@@ -61,25 +74,36 @@ function ChatRoom()
     const handleSendMessage = () => {
         //aici voi schimbati, va mai adaugati ce va mai trebuie, eu am lasat reciever random
         let date = new Date();
-        const message = {
-            sender: username,
-            receiver: 'Haistachi',
-            content: messageInput,
-            time: date.toISOString().split(".")[0],
-            rol: localStorage.getItem('rol')
-        };
+        if(rol === "admin") {
+            for(let i=0; i< contacte.length ; i++ ) {
+                const message = {
+                    sender: username,
+                    receiver: contacte.at(i).username,
+                    content: messageInput,
+                    time: date.toISOString().split(".")[0],
+                    rol: localStorage.getItem('rol')
+                };
+                if (clientRef.current && clientRef.current.sendMessage) {
+                    clientRef.current.sendMessage('/app/chat', JSON.stringify(message));
+                }
+            }
+        }else
+        {
+            const message = {
+                sender: username,
+                receiver: 'admin',
+                content: messageInput,
+                time: date.toISOString().split(".")[0],
+                rol: localStorage.getItem('rol')
+            };
+            if (clientRef.current && clientRef.current.sendMessage) {
+                clientRef.current.sendMessage('/app/chat', JSON.stringify(message));
+            }
+        }
         //current este proprietatea din obiectul de referință care conține referința efectivă către elementul sau obiectul
         //pe care l-ați legat cu useRef.
         //Prin accesarea proprietății current, puteți interacționa cu obiectul sau elementul din afara ciclului de viață al componentei.
         //practic un mod de a accesa obiectul in sine, nu doar referinta
-
-        //sendMessage este o metodă specifică a acestui client WebSocket (SockJsClient)
-        //care este utilizată pentru a trimite mesaje către serverul WebSocket
-        if (clientRef.current && clientRef.current.sendMessage) {
-            clientRef.current.sendMessage('/app/chat', JSON.stringify(message));
-        }
-
-        //golim mesajul dupa ce l-am trimis
         setMessageInput('');
     };
 
@@ -93,8 +117,7 @@ function ChatRoom()
 
     //setam topicul aici ca sa evitam sa ne dea eroare de connection cannot be established yet
     let onConnected = () => {
-        setTopics(['/topic/messages'])
-        console.log("Connected!!")
+        fSetTopic();
     }
 
     return (
@@ -107,7 +130,6 @@ function ChatRoom()
                     >
                         {msg.time + " " + msg.sender}: {msg.content}
                     </div>
-                    //aici pot accesa senderu si contetu, ca mi le-am definit asa in java, voi afisati cum vreti
                 ))}
             </div>
             <Form>
