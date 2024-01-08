@@ -2,7 +2,7 @@ package org.example.entities;
 
 public enum Role {
 
-    admin,
-    user
+    ROLE_ADMIN,
+    ROLE_USER
 
 }

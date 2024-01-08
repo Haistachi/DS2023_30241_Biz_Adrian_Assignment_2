@@ -34,6 +34,7 @@ function Admin()
     const [chatPersons, setChatPersons] = useState([]);
     const [pageChat, setPageChat]= useState(0);
     const [chatPerson, setChatPerson] = useState("");
+    
 
     var tableUser = document.getElementById("UserTable");
     if (tableUser) {
@@ -214,7 +215,7 @@ function Admin()
     const onNextChat=()=>{setPageChat(pageChat +1 < chatPersons.length/10 ? pageChat+1:pageChat)}
      useEffect(
         ()=>{
-            if(localStorage.getItem("rol") !== "admin")
+            if(localStorage.getItem("rol") !== "ROLE_ADMIN")
                 return(showError("Only admin role allowed!"));
 
             getPersons((res, stat, err)=>{if(err) console.log(err);
@@ -242,9 +243,9 @@ function Admin()
             <div className="Button"><button onClick={addToChat}>Add To Chat</button></div>
             <div className="Button"><button onClick={removeFromChat}>Remove From Chat</button></div>
         </div>
-        {persons && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>
+        {persons && <div style={{width: "70%", boxShadow: "3px 6px 3px #ccc"}}>
             <table cellSpacing={"0"}
-                   style={{width: "100%", height: "auto", padding: "5px 10 px"}} id={"UserTable"}>
+                   style={{width: "100%", height: "auto", padding: "5px 10 px", textAlign:"center"}} id={"UserTable"}>
             <thead><tr>
                 <th>ID</th>
                 <th>User</th>
@@ -287,8 +288,8 @@ function Admin()
             <div className="Button" ><button onClick={deleteDeviceB}>Delete</button></div>
             <div className="Button" ><button onClick={updateDeviceB}>Update</button></div>
         </div>
-        {devices && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>
-            <table cellSpacing={"0"} style={{width: "100%", height: "auto", padding: "5px 10 px"}} id={"DeviceTable"}>
+        {devices && <div style={{width: "70%", boxShadow: "3px 6px 3px #ccc"}}>
+            <table cellSpacing={"0"} style={{width: "100%", height: "auto", padding: "5px 10 px", textAlign:"center"}} id={"DeviceTable"}>
             <thead><tr>
                 <th>ID</th>
                 <th>Person</th>
@@ -318,9 +319,9 @@ function Admin()
             <div className="Button"><button onClick={removeFromChat}>Remove From Chat</button></div>
             <div className="Button"><button onClick={chat}>ChatRoom</button></div>
         </div>
-        {persons && <div style={{width: "50%", boxShadow: "3px 6px 3px #ccc"}}>
+        {persons && <div style={{width: "70%", boxShadow: "3px 6px 3px #ccc"}}>
             <table cellSpacing={"0"}
-                   style={{width: "100%", height: "auto", padding: "5px 10 px"}} id={"UserTable"}>
+                   style={{width: "100%", height: "auto", padding: "5px 10 px", textAlign:"center"}} id={"UserTable"}>
                 <thead><tr>
                     <th>ID</th>
                     <th>User</th>

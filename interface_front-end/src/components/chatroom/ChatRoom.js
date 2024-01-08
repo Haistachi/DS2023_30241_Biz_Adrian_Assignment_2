@@ -57,6 +57,9 @@ function ChatRoom()
 
     function Reconect()
     {
+        if (clientRef.current && clientRef.current.deactivate) {
+            clientRef.current.deactivate();
+        }
         fSetTopic();
     }
     function Back()
@@ -65,7 +68,7 @@ function ChatRoom()
         if (clientRef.current && clientRef.current.deactivate) {
             clientRef.current.deactivate();
         }
-        if (rol === "admin")
+        if (rol === "ROLE_ADMIN")
             return (navigate("/admin"));
         else
             return(navigate("/user"));

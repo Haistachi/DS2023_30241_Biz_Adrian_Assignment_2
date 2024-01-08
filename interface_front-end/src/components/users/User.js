@@ -80,7 +80,7 @@ function User(props)
     useEffect(
         ()=>{
             //console.log(localStorage.getItem("rol"));
-            if(localStorage.getItem("rol") !== "user")
+            if(localStorage.getItem("rol") !== "ROLE_USER")
                 return(navigate("/error"));
             setName(localStorage.getItem("user"));
             findPersonIdByName(localStorage.getItem("user"),(response, stat, err)=>{if(err) console.log(err);

@@ -1,5 +1,6 @@
 package org.example.servicies;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.dtos.PersonDTO;
 import org.example.dtos.PersonDTOBuilder;
 import org.example.entities.Person;
@@ -8,8 +9,10 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -17,10 +20,13 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
+@Transactional
+@Slf4j
 public class PersonServices {
 
     @Autowired
     private final PersonRepository personRepository;
+    private final PasswordEncoder passwordEncoder;
     private static final Logger LOGGER = LoggerFactory.getLogger(PersonServices.class);
     public List<PersonDTO> findUsers() {
         List<Person> personList = personRepository.findAll();
@@ -40,6 +46,7 @@ public class PersonServices {
 
     public Integer insert(PersonDTO personDTO) {
         Person person = PersonDTOBuilder.toEntity(personDTO);
+        person.setUserPassword(passwordEncoder.encode(person.getUserPassword()));
         person = personRepository.save(person);
         LOGGER.debug("Person with id {} was inserted in db", person.getId());
         return person.getId();
